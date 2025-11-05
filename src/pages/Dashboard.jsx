@@ -94,9 +94,12 @@ export default function Dashboard() {
   )
 
   const [activeProfile, setActiveProfile] = useState("Personal")
-  const [selectedAccountId, setSelectedAccountId] = useState(null)
-  const [activeMenu, setActiveMenu] = useState("Banking")
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+const [selectedAccountId, setSelectedAccountId] = useState(null)
+const [activeMenu, setActiveMenu] = useState("")       // ← مقدار اولیه خالی
+const [activeSubMenu, setActiveSubMenu] = useState("") // ← برای WPS زیرمنو
+const [sidebarOpen, setSidebarOpen] = useState(false)
+
+
 
   const accounts = demoProfiles[activeProfile]
   const selectedAccount = accounts.find((a) => a.id === selectedAccountId) || null
@@ -121,58 +124,143 @@ export default function Dashboard() {
   }))
 
   return (
-    <div className="flex min-h-screen bg-gray-50 text-gray-800">
+    <div className="bg-gray-50 text-gray-800 min-h-screen">
       {/* Sidebar */}
       <aside
-        className={`fixed md:static z-50 top-0 left-0 h-full w-64 bg-[#2E3092] text-white flex flex-col py-6 transform transition-transform duration-300 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+  className={`fixed top-0 left-0 h-screen w-64 bg-[#2E3092] text-white flex flex-col py-6 transform transition-transform duration-300 z-50
+  ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+  md:translate-x-0`}
+>
+  <div className="px-6 pb-5 border-b border-white/15 flex justify-between items-center">
+    <div>
+      <h2 className="text-lg font-semibold tracking-wide">Customer Portal</h2>
+      <p className="text-xs text-white/70">Welcome to MyBank</p>
+    </div>
+    <button className="md:hidden text-white" onClick={() => setSidebarOpen(false)}>
+      <X size={20} />
+    </button>
+  </div>
+
+  {/* Navigation */}
+  <nav className="mt-4 flex-1 space-y-1 px-3 text-sm">
+    {/* Banking */}
+    <button
+      onClick={() => setActiveMenu("Banking")}
+      className={`w-full text-left flex items-center gap-3 px-4 py-2 rounded-md transition ${
+        activeMenu === "Banking" ? "bg-white text-[#2E3092]" : "hover:bg-white/10 text-white/90"
+      }`}
+    >
+      <Banknote size={18} />
+      <span>Banking</span>
+    </button>
+
+    {/* Facilities */}
+    <div>
+      <button
+        onClick={() => setActiveMenu(activeMenu === "Facilities" ? "" : "Facilities")}
+        className={`w-full text-left flex items-center justify-between px-4 py-2 rounded-md transition ${
+          activeMenu === "Facilities"
+            ? "bg-white text-[#2E3092]"
+            : "hover:bg-white/10 text-white/90"
         }`}
       >
-        <div className="px-6 pb-5 border-b border-white/15 flex justify-between items-center">
+        <span className="flex items-center gap-3">
+          <Building2 size={18} />
+          Facilities
+        </span>
+        <span className="text-xs">{activeMenu === "Facilities" ? "−" : "+"}</span>
+      </button>
+
+      {/* Facilities submenu */}
+      {activeMenu === "Facilities" && (
+        <div className="ml-6 mt-1 space-y-1">
+          {/* WPS Module */}
           <div>
-            <h2 className="text-lg font-semibold tracking-wide">Customer Portal</h2>
-            <p className="text-xs text-white/70">Welcome to MyBank</p>
+            <button
+              onClick={() => setActiveSubMenu(activeSubMenu === "WPS" ? "" : "WPS")}
+              className="w-full text-left px-3 py-1 rounded-md hover:bg-white/10"
+            >
+              WPS Module {activeSubMenu === "WPS" ? "−" : "+"}
+            </button>
+            {activeSubMenu === "WPS" && (
+              <div className="ml-4 mt-1 space-y-1">
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+                  Register / Deregister
+                </button>
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+                  Companies
+                </button>
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+                  Employees
+                </button>
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+                  Salary Payment
+                </button>
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+                  Refund
+                </button>
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+                  Reports
+                </button>
+              </div>
+            )}
           </div>
-          <button
-            className="md:hidden text-white"
-            onClick={() => setSidebarOpen(false)}
-          >
-            <X size={20} />
+
+          {/* Module A & B */}
+          <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+            Module A
+          </button>
+          <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
+            Module B
           </button>
         </div>
-
-        <nav className="mt-4 flex-1 space-y-1 px-3">
-          {sidebarItems.map(({ key, label, icon: Icon }) => (
-            <button
-              key={key}
-              onClick={() => setActiveMenu(key)}
-              className={`w-full text-left flex items-center gap-3 px-4 py-2 rounded-md transition ${
-                activeMenu === key
-                  ? "bg-white text-[#2E3092] font-medium"
-                  : "hover:bg-white/10 text-white/90"
-              }`}
-            >
-              <Icon size={18} />
-              <span>{label}</span>
-            </button>
-          ))}
-        </nav>
-
-        <div className="mt-auto px-6 pt-4 pb-2 border-t border-white/10 text-xs text-white/65">
-          © 2025 MyBank UAE
-        </div>
-      </aside>
-
-      {/* Overlay (for mobile sidebar) */}
-      {sidebarOpen && (
-        <div
-          onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
-        />
       )}
+    </div>
+
+    {/* Customer Services */}
+    <button
+      onClick={() => setActiveMenu("Customer")}
+      className={`w-full text-left flex items-center gap-3 px-4 py-2 rounded-md transition ${
+        activeMenu === "Customer"
+          ? "bg-white text-[#2E3092]"
+          : "hover:bg-white/10 text-white/90"
+      }`}
+    >
+      <Headphones size={18} />
+      <span>Customer Services</span>
+    </button>
+
+    {/* Reports */}
+    <button
+      onClick={() => setActiveMenu("Reports")}
+      className={`w-full text-left flex items-center gap-3 px-4 py-2 rounded-md transition ${
+        activeMenu === "Reports"
+          ? "bg-white text-[#2E3092]"
+          : "hover:bg-white/10 text-white/90"
+      }`}
+    >
+      <Save size={18} />
+      <span>Reports</span>
+    </button>
+  </nav>
+
+  <div className="mt-auto px-6 pt-4 pb-2 border-t border-white/10 text-xs text-white/65">
+    © 2025 MyBank UAE
+  </div>
+</aside>
+
+
+      {/* Overlay (mobile only) */}
+      {sidebarOpen && (
+      <div
+        onClick={() => setSidebarOpen(false)}
+        className="fixed inset-0 bg-black/40 z-40 md:hidden"
+    />
+  )}
+
 
       {/* Main Content */}
-      <main className="flex-1 p-4 md:p-8">
+  <main className="md:ml-64 p-4 md:p-8 overflow-y-auto transition-all duration-300">
         {/* Header for mobile */}
         <div className="flex items-center justify-between mb-6 md:hidden">
           <button
@@ -240,7 +328,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* Accounts & Transactions (Stacked in mobile) */}
+        {/* Accounts & Transactions */}
         <section className="space-y-8">
           <div>
             <h2 className="text-lg font-semibold text-[#2E3092] mb-3">

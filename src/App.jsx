@@ -1,27 +1,27 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom"
-import { AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
-import PageLoader from "./components/PageLoader"
-import Login from "./pages/Login"
-import Otp from "./pages/Otp"
-import Dashboard from "./pages/Dashboard"
-import Register from "./pages/wps/Register"
-import Companies from "./pages/wps/Companies"
-import Employees from "./pages/wps/Employees"
-import SalaryPayment from "./pages/wps/SalaryPayment"
-import Refund from "./pages/wps/Refund"
-import Reports from "./pages/wps/Reports"
-import TransitionWrapper from "./components/TransitionWrapper"
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import PageLoader from "./components/PageLoader";
+import Login from "./pages/Login";
+import Otp from "./pages/Otp";
+import Dashboard from "./pages/Dashboard";
+import Register from "./pages/wps/Register";
+import Companies from "./pages/wps/Companies";
+import Employees from "./pages/wps/Employees";
+import SalaryPayment from "./pages/wps/SalaryPayment";
+import Refund from "./pages/wps/Refund";
+import Reports from "./pages/wps/Reports";
+import TransitionWrapper from "./components/TransitionWrapper";
 
 function AppRoutes() {
-  const location = useLocation()
-  const [loading, setLoading] = useState(false)
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
-    const timer = setTimeout(() => setLoading(false), 800)
-    return () => clearTimeout(timer)
-  }, [location.pathname])
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
     <>
@@ -43,13 +43,15 @@ function AppRoutes() {
         </TransitionWrapper>
       </AnimatePresence>
     </>
-  )
+  );
 }
 
 export default function App() {
+  const basename = import.meta.env.MODE === "production" ? "/my-bank-app" : "/";
+
   return (
-    <Router basename="/my-bank-app">
+    <Router basename={basename}>
       <AppRoutes />
     </Router>
-  )
+  );
 }

@@ -1,8 +1,7 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
-  UserPlus,
   Building2,
   Users,
   CreditCard,
@@ -10,50 +9,107 @@ import {
   FileBarChart,
   Menu,
   X,
-} from "lucide-react"
+  ChevronDown,
+  ChevronRight,
+  HandCoins,
+  Headphones,
+  Banknote,
+} from "lucide-react";
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [openFacilities, setOpenFacilities] = useState(false);
+  const [openWps, setOpenWps] = useState(false);
 
-  const menuItems = [
-    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
-    { name: "Register / Deregister", path: "/wps/register", icon: UserPlus },
-    { name: "Companies", path: "/wps/companies", icon: Building2 },
-    { name: "Employees", path: "/wps/employees", icon: Users },
-    { name: "Salary Payment", path: "/wps/salary", icon: CreditCard },
-    { name: "Refund Request", path: "/wps/refund", icon: RotateCcw },
-    { name: "Reports", path: "/wps/reports", icon: FileBarChart },
-  ]
+  const linkClass = ({ isActive }) =>
+    `flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+      isActive
+        ? "bg-white text-[#2E3092]"
+        : "hover:bg-white/10 text-white/90"
+    }`;
 
   return (
     <>
       {/* 🔹 Desktop Sidebar */}
       <aside className="hidden md:flex flex-col w-64 bg-[#2E3092] text-white min-h-screen fixed left-0 top-0 shadow-lg">
         <div className="p-6 text-center border-b border-white/20">
-          <h2 className="text-lg font-semibold tracking-wide">MyBank WPS</h2>
-          <p className="text-xs text-white/70">Payroll Management</p>
+          <h2 className="text-lg font-semibold tracking-wide">MyBank</h2>
+          <p className="text-xs text-white/70">Customer Portal</p>
         </div>
 
-        <nav className="flex-1 mt-4 space-y-1 px-3">
-          {menuItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    isActive
-                      ? "bg-white text-[#2E3092]"
-                      : "hover:bg-white/10 text-white/90"
-                  }`
-                }
-              >
-                <Icon size={18} />
-                {item.name}
-              </NavLink>
-            )
-          })}
+        <nav className="flex-1 mt-4 space-y-1 px-3 overflow-y-auto">
+          {/* Dashboard */}
+          <NavLink to="/dashboard" className={linkClass}>
+            <Banknote size={18} />
+            Banking
+          </NavLink>
+
+          {/* Facilities */}
+          <div>
+            <button
+              onClick={() => setOpenFacilities(!openFacilities)}
+              className="w-full flex items-center justify-between px-4 py-2 rounded-lg hover:bg-white/10 transition text-sm font-medium"
+            >
+              <span className="flex items-center gap-3">
+                <Building2 size={18} /> Facilities
+              </span>
+              {openFacilities ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            </button>
+
+            {openFacilities && (
+              <div className="pl-6 mt-1 space-y-1">
+                {/* WPS Module */}
+                <button
+                  onClick={() => setOpenWps(!openWps)}
+                  className="w-full flex items-center justify-between py-2 px-3 hover:bg-white/10 rounded-md text-sm"
+                >
+                  <span>WPS Module</span>
+                  {openWps ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                </button>
+
+                {openWps && (
+                  <div className="pl-4 space-y-1 text-sm">
+                    <NavLink to="/wps/register" className="block hover:underline">
+                      Register / Deregister
+                    </NavLink>
+                    <NavLink to="/wps/companies" className="block hover:underline">
+                      Companies
+                    </NavLink>
+                    <NavLink to="/wps/employees" className="block hover:underline">
+                      Employees
+                    </NavLink>
+                    <NavLink to="/wps/salary" className="block hover:underline">
+                      Salary Payment
+                    </NavLink>
+                    <NavLink to="/wps/refund" className="block hover:underline">
+                      Refund
+                    </NavLink>
+                    <NavLink to="/wps/reports" className="block hover:underline">
+                      Reports
+                    </NavLink>
+                  </div>
+                )}
+
+                {/* Other Modules */}
+                <NavLink to="#" className="block py-1 px-3 hover:underline text-sm">
+                  Module A
+                </NavLink>
+                <NavLink to="#" className="block py-1 px-3 hover:underline text-sm">
+                  Module B
+                </NavLink>
+
+                {/* Customer Services */}
+                <NavLink to="#" className="block py-1 px-3 hover:underline text-sm flex items-center gap-2">
+                  <Headphones size={14} /> Customer Services
+                </NavLink>
+              </div>
+            )}
+          </div>
+
+          {/* Requests */}
+          <NavLink to="#" className={linkClass}>
+            <HandCoins size={18} /> Requests
+          </NavLink>
         </nav>
 
         <div className="mt-auto p-4 border-t border-white/10 text-xs text-center text-white/60">
@@ -61,15 +117,15 @@ export default function Sidebar() {
         </div>
       </aside>
 
-      {/* 🔹 Mobile Header + Drawer */}
+      {/* 🔹 Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 w-full bg-[#2E3092] text-white flex items-center justify-between p-4 z-50">
-        <h2 className="text-base font-semibold">MyBank WPS</h2>
+        <h2 className="text-base font-semibold">MyBank</h2>
         <button onClick={() => setOpen(true)} className="p-2">
           <Menu size={24} />
         </button>
       </div>
 
-      {/* Drawer Menu */}
+      {/* 🔹 Mobile Drawer */}
       {open && (
         <>
           <div
@@ -84,27 +140,84 @@ export default function Sidebar() {
               </button>
             </div>
 
-            <nav className="flex-1 space-y-1">
-              {menuItems.map((item) => {
-                const Icon = item.icon
-                return (
-                  <NavLink
-                    key={item.name}
-                    to={item.path}
-                    onClick={() => setOpen(false)}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
-                        isActive
-                          ? "bg-white text-[#2E3092]"
-                          : "hover:bg-white/10 text-white/90"
-                      }`
-                    }
+            <nav className="flex-1 space-y-1 overflow-y-auto">
+              {/* Banking */}
+              <NavLink
+                to="/dashboard"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10"
+              >
+                <Banknote size={18} /> Banking
+              </NavLink>
+
+              {/* Facilities */}
+              <button
+                onClick={() => setOpenFacilities(!openFacilities)}
+                className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-white/10"
+              >
+                <span className="flex items-center gap-3">
+                  <Building2 size={18} /> Facilities
+                </span>
+                {openFacilities ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+              </button>
+
+              {openFacilities && (
+                <div className="pl-6 mt-1 space-y-1">
+                  {/* WPS Module */}
+                  <button
+                    onClick={() => setOpenWps(!openWps)}
+                    className="w-full flex items-center justify-between py-2 px-2 hover:bg-white/10 rounded-md text-sm"
                   >
-                    <Icon size={18} />
-                    {item.name}
+                    <span>WPS Module</span>
+                    {openWps ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+
+                  {openWps && (
+                    <div className="pl-4 space-y-1 text-sm">
+                      <NavLink to="/wps/register" onClick={() => setOpen(false)}>
+                        Register / Deregister
+                      </NavLink>
+                      <NavLink to="/wps/companies" onClick={() => setOpen(false)}>
+                        Companies
+                      </NavLink>
+                      <NavLink to="/wps/employees" onClick={() => setOpen(false)}>
+                        Employees
+                      </NavLink>
+                      <NavLink to="/wps/salary" onClick={() => setOpen(false)}>
+                        Salary Payment
+                      </NavLink>
+                      <NavLink to="/wps/refund" onClick={() => setOpen(false)}>
+                        Refund
+                      </NavLink>
+                      <NavLink to="/wps/reports" onClick={() => setOpen(false)}>
+                        Reports
+                      </NavLink>
+                    </div>
+                  )}
+
+                  {/* Other Modules */}
+                  <NavLink to="#" className="block py-1 px-3 hover:underline text-sm">
+                    Module A
                   </NavLink>
-                )
-              })}
+                  <NavLink to="#" className="block py-1 px-3 hover:underline text-sm">
+                    Module B
+                  </NavLink>
+                  <NavLink
+                    to="#"
+                    className="block py-1 px-3 hover:underline text-sm flex items-center gap-2"
+                  >
+                    <Headphones size={14} /> Customer Services
+                  </NavLink>
+                </div>
+              )}
+
+              {/* Requests */}
+              <NavLink
+                to="#"
+                className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10"
+              >
+                <HandCoins size={18} /> Requests
+              </NavLink>
             </nav>
 
             <div className="mt-auto text-xs text-center text-white/60 border-t border-white/10 pt-3">
@@ -114,5 +227,5 @@ export default function Sidebar() {
         </>
       )}
     </>
-  )
+  );
 }
