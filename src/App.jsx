@@ -11,6 +11,7 @@ import Employees from "./pages/wps/Employees";
 import SalaryPayment from "./pages/wps/SalaryPayment";
 import Refund from "./pages/wps/Refund";
 import Reports from "./pages/wps/Reports";
+import WpsPage from "./pages/wps/WpsPage";
 import TransitionWrapper from "./components/TransitionWrapper";
 
 function AppRoutes() {
@@ -33,6 +34,7 @@ function AppRoutes() {
             <Route path="/login" element={<Login />} />
             <Route path="/otp" element={<Otp />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/wps" element={<WpsPage />} />
             <Route path="/wps/register" element={<Register />} />
             <Route path="/wps/companies" element={<Companies />} />
             <Route path="/wps/employees" element={<Employees />} />

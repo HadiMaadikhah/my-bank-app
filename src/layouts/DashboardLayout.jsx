@@ -1,150 +1,212 @@
+// src/layouts/DashboardLayout.jsx
 import { useState } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import {
-  Home,
-  Users,
+  Banknote,
   Building2,
-  FileSpreadsheet,
-  CreditCard,
-  RefreshCw,
-  BarChart3,
-  LogOut,
+  HandCoins,
+  Headphones,
+  Save,
   Menu,
   X,
-  ChevronDown,
-  ChevronRight,
 } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
 
 export default function DashboardLayout() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [activeMenu, setActiveMenu] = useState("");
+  const [activeSubMenu, setActiveSubMenu] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [openFacility, setOpenFacility] = useState(false);
-  const [openWps, setOpenWps] = useState(false);
+
+  // وقتی صفحه عوض شد، سایدبار موبایل بسته شود
+  // (برای UX بهتر)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen bg-[#f2f4ff]">
-      {/* SIDEBAR */}
+    <div className="bg-gray-50 text-gray-800 min-h-screen">
+      {/* Sidebar */}
       <aside
-        className={`fixed md:static top-0 left-0 h-full bg-[#2E3092] text-white w-64 p-5 flex flex-col transition-transform duration-300 z-50 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        className={`fixed top-0 left-0 h-screen w-64 bg-[#2E3092] text-white flex flex-col py-6 transform transition-transform duration-300 z-50
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+        md:translate-x-0`}
       >
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-xl font-bold tracking-wide">MyBank WPS</h2>
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="md:hidden text-white"
-          >
-            <X className="w-6 h-6" />
+        <div className="px-6 pb-5 border-b border-white/15 flex justify-between items-center">
+          <div>
+            <h2 className="text-lg font-semibold tracking-wide">Customer Portal</h2>
+            <p className="text-xs text-white/70">Welcome to MyBank</p>
+          </div>
+          <button className="md:hidden text-white" onClick={() => setSidebarOpen(false)}>
+            <X size={20} />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav className="space-y-2 flex-1 overflow-y-auto">
-          <Link
-            to="/dashboard"
-            className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/15 transition"
+        <nav className="mt-4 flex-1 space-y-1 px-3 text-sm">
+          {/* Banking */}
+          <button
+            onClick={() => {
+              setActiveMenu("Banking");
+              navigate("/dashboard");
+            }}
+            className={`w-full text-left flex items-center gap-3 px-4 py-2 rounded-md transition ${
+              location.pathname.startsWith("/dashboard")
+                ? "bg-white text-[#2E3092]"
+                : "hover:bg-white/10 text-white/90"
+            }`}
           >
-            <Home className="w-5 h-5" />
-            <span>Dashboard</span>
-          </Link>
+            <Banknote size={18} />
+            <span>Banking</span>
+          </button>
 
-          {/* Facilities Dropdown */}
+          {/* Facilities */}
           <div>
             <button
-              onClick={() => setOpenFacility(!openFacility)}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-white/15 transition"
+              onClick={() =>
+                setActiveMenu(activeMenu === "Facilities" ? "" : "Facilities")
+              }
+              className={`w-full text-left flex items-center justify-between px-4 py-2 rounded-md transition ${
+                activeMenu === "Facilities"
+                  ? "bg-white text-[#2E3092]"
+                  : "hover:bg-white/10 text-white/90"
+              }`}
             >
               <span className="flex items-center gap-3">
-                <Building2 className="w-5 h-5" />
+                <Building2 size={18} />
                 Facilities
               </span>
-              {openFacility ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+              <span className="text-xs">{activeMenu === "Facilities" ? "−" : "+"}</span>
             </button>
 
-            {openFacility && (
-              <div className="pl-6 mt-1 space-y-1">
-                {/* WPS Module Dropdown */}
-                <button
-                  onClick={() => setOpenWps(!openWps)}
-                  className="w-full flex items-center justify-between py-2 px-2 hover:bg-white/10 rounded-md text-sm"
-                >
-                  <span>WPS Module</span>
-                  {openWps ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-                </button>
+            {/* Facilities submenu */}
+            {activeMenu === "Facilities" && (
+              <div className="ml-6 mt-1 space-y-1">
+                {/* WPS Module */}
+                <div>
+                  <button
+                    onClick={() => {
+                      const next = activeSubMenu === "WPS" ? "" : "WPS";
+                      setActiveSubMenu(next);
+                      // همراه با باز شدن، برو به صفحه اصلی WPS
+                      if (next === "WPS") navigate("/wps");
+                    }}
+                    className="w-full text-left px-3 py-1 rounded-md hover:bg-white/10"
+                  >
+                    WPS Module {activeSubMenu === "WPS" ? "−" : "+"}
+                  </button>
 
-                {openWps && (
-                  <div className="pl-4 space-y-1 text-sm">
-                    <Link to="/dashboard/register" className="block hover:underline">
-                      Register / Deregister
-                    </Link>
-                    <Link to="/dashboard/companies" className="block hover:underline">
-                      Companies
-                    </Link>
-                    <Link to="/dashboard/employees" className="block hover:underline">
-                      Employees
-                    </Link>
-                    <Link to="/dashboard/salary" className="block hover:underline">
-                      Salary Payment
-                    </Link>
-                    <Link to="/dashboard/refund" className="block hover:underline">
-                      Refund Request
-                    </Link>
-                    <Link to="/dashboard/reports" className="block hover:underline">
-                      Reports
-                    </Link>
-                  </div>
-                )}
+                  {activeSubMenu === "WPS" && (
+                    <div className="ml-4 mt-1 space-y-1">
+                      <button
+                        onClick={() => navigate("/wps/register")}
+                        className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md"
+                      >
+                        Register / Deregister
+                      </button>
+                      <button
+                        onClick={() => navigate("/wps/companies")}
+                        className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md"
+                      >
+                        Companies
+                      </button>
+                      <button
+                        onClick={() => navigate("/wps/employees")}
+                        className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md"
+                      >
+                        Employees
+                      </button>
+                      <button
+                        onClick={() => navigate("/wps/salary")}
+                        className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md"
+                      >
+                        Salary Payment
+                      </button>
+                      <button
+                        onClick={() => navigate("/wps/refund")}
+                        className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md"
+                      >
+                        Refund
+                      </button>
+                      <button
+                        onClick={() => navigate("/wps/reports")}
+                        className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md"
+                      >
+                        Reports
+                      </button>
+                    </div>
+                  )}
+                </div>
 
-                <Link to="#" className="block py-1 px-3 hover:underline text-sm">
+                {/* Module A & B - نمونه */}
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
                   Module A
-                </Link>
-                <Link to="#" className="block py-1 px-3 hover:underline text-sm">
+                </button>
+                <button className="block w-full text-left px-3 py-1 hover:bg-white/10 rounded-md">
                   Module B
-                </Link>
-                <Link to="#" className="block py-1 px-3 hover:underline text-sm">
-                  Customer Services
-                </Link>
+                </button>
               </div>
             )}
           </div>
+
+          {/* Customer Services */}
+          <button
+            onClick={() => setActiveMenu("Customer")}
+            className={`w-full text-left flex items-center gap-3 px-4 py-2 rounded-md transition ${
+              activeMenu === "Customer"
+                ? "bg-white text-[#2E3092]"
+                : "hover:bg-white/10 text-white/90"
+            }`}
+          >
+            <Headphones size={18} />
+            <span>Customer Services</span>
+          </button>
+
+          {/* Reports */}
+          <button
+            onClick={() => {
+              setActiveMenu("Reports");
+              navigate("/wps/reports");
+            }}
+            className={`w-full text-left flex items-center gap-3 px-4 py-2 rounded-md transition ${
+              location.pathname.startsWith("/wps/reports")
+                ? "bg-white text-[#2E3092]"
+                : "hover:bg-white/10 text-white/90"
+            }`}
+          >
+            <Save size={18} />
+            <span>Reports</span>
+          </button>
         </nav>
 
-        <div className="mt-auto pt-4 border-t border-white/15 text-xs text-white/65">
+        <div className="mt-auto px-6 pt-4 pb-2 border-t border-white/10 text-xs text-white/65">
           © 2025 MyBank UAE
         </div>
       </aside>
 
-      {/* MAIN CONTENT */}
-      <div className="flex-1 flex flex-col">
-        {/* HEADER */}
-        <header className="bg-white shadow-md px-6 py-3 flex items-center justify-between sticky top-0 z-40">
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="md:hidden text-[#2E3092]"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-            <h1 className="text-lg font-semibold text-[#2E3092]">
-              WPS Dashboard
-            </h1>
-          </div>
-          <div className="flex items-center space-x-4">
-            <p className="text-sm text-gray-700">
-              Welcome, <span className="font-semibold">Hadi</span>
-            </p>
-            <button className="flex items-center text-[#2E3092] hover:text-[#1c1e6b] transition">
-              <LogOut className="w-5 h-5 mr-1" />
-              Logout
-            </button>
-          </div>
-        </header>
+      {/* Overlay (mobile only) */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
 
-        {/* CONTENT AREA */}
-        <main className="flex-1 p-6 overflow-x-hidden">
-          <Outlet />
-        </main>
-      </div>
+      {/* Main content (خروجی صفحات فرزند) */}
+      <main className="md:ml-64 p-4 md:p-8 overflow-y-auto transition-all duration-300">
+        {/* هدر موبایل */}
+        <div className="flex items-center justify-between mb-6 md:hidden">
+          <button className="text-[#2E3092]" onClick={() => setSidebarOpen(true)}>
+            <Menu size={24} />
+          </button>
+          <h1 className="text-xl font-bold text-[#2E3092]">Dashboard</h1>
+          <div className="w-6" />
+        </div>
+
+        <Outlet />
+      </main>
     </div>
   );
 }

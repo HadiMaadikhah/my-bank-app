@@ -177,10 +177,15 @@ const [sidebarOpen, setSidebarOpen] = useState(false)
           {/* WPS Module */}
           <div>
             <button
-              onClick={() => setActiveSubMenu(activeSubMenu === "WPS" ? "" : "WPS")}
-              className="w-full text-left px-3 py-1 rounded-md hover:bg-white/10"
-            >
-              WPS Module {activeSubMenu === "WPS" ? "−" : "+"}
+              onClick={() => {
+    const next = activeSubMenu === "WPS" ? "" : "WPS";
+    setActiveSubMenu(next);
+    // ✅ در زمان باز شدن، به صفحه WPS هدایت کن
+    if (next === "WPS") navigate("/wps");
+  }}
+  className="w-full text-left px-3 py-1 rounded-md hover:bg-white/10"
+>
+  WPS Module {activeSubMenu === "WPS" ? "−" : "+"}
             </button>
             {activeSubMenu === "WPS" && (
               <div className="ml-4 mt-1 space-y-1">
