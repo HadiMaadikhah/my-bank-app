@@ -9,12 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts"
-import {
-  CheckCircle2,
-  RefreshCw,
-  Save,
-  Menu,
-} from "lucide-react"
+import { CheckCircle2, RefreshCw, Save } from "lucide-react"
 
 export default function Dashboard() {
   const navigate = useNavigate()
@@ -94,8 +89,7 @@ export default function Dashboard() {
   const accounts = demoProfiles[activeProfile]
   const selectedAccount = accounts.find((a) => a.id === selectedAccountId) || null
 
-  const handleSetAsSalary = () =>
-    toast.success("Salary account updated successfully.")
+  const handleSetAsSalary = () => toast.success("Salary account updated successfully.")
   const handleRefreshTx = () => toast.info("Refreshing transactions...")
   const handleSaveChanges = () => toast.success("Changes saved successfully.")
 
@@ -108,17 +102,13 @@ export default function Dashboard() {
 
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen">
-      {/* Main Content */}
       <main className="p-4 md:p-8 overflow-y-auto transition-all duration-300">
-        {/* Header for mobile */}
-        <div className="flex items-center justify-between mb-6 md:hidden">
-          <button className="text-[#2E3092]">
-            <Menu size={24} />
-          </button>
+        {/* ✅ فقط عنوان در موبایل نمایش داده شود، بدون آیکن منو */}
+        <div className="flex items-center justify-center mb-6 md:hidden">
           <h1 className="text-xl font-bold text-[#2E3092]">Banking</h1>
-          <div className="w-6" />
         </div>
 
+        {/* دسکتاپ */}
         <h1 className="hidden md:block text-2xl font-bold text-[#2E3092] mb-6">
           Banking
         </h1>
@@ -251,10 +241,7 @@ export default function Dashboard() {
                   </thead>
                   <tbody>
                     {selectedAccount.transactions.map((tx) => (
-                      <tr
-                        key={tx.id}
-                        className="border-t hover:bg-gray-50 transition"
-                      >
+                      <tr key={tx.id} className="border-t hover:bg-gray-50 transition">
                         <td className="py-2 px-4">{tx.date}</td>
                         <td className="py-2 px-4">{tx.type}</td>
                         <td

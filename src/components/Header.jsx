@@ -1,4 +1,5 @@
-// src/components/Header.jsx
+import { useState, useRef, useEffect } from "react";
+
 export default function Header({ onToggleSidebar }) {
   const user = {
     name: "Hadi Maadikhah",
@@ -6,14 +7,28 @@ export default function Header({ onToggleSidebar }) {
     avatarUrl: "https://i.pravatar.cc/64?img=15",
   };
 
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
 
+  // ✅ بستن منوی پروفایل وقتی بیرون کلیک میشه
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <header className="h-16 flex items-center justify-between px-4 sm:px-6 bg-gradient-to-r from-[#f7f8ff]/90 via-[#eaefff]/90 to-[#dee2ff]/90 text-[#1c1f4a] border-b border-[#cfd3ff]/70 shadow-sm backdrop-blur-xl sticky top-0 z-50">
-      {/* Left Section */}
+    <header className="h-16 flex items-center justify-between px-4 sm:px-6 bg-gradient-to-r from-[#f7f8ff]/90 via-[#ebedff]/90 to-[#dfe3ff]/90 text-[#1c1f4a] border-b border-[#cfd3ff]/70 shadow-sm backdrop-blur-xl sticky top-0 z-50">
+      {/* 🔹 Left Section */}
       <div className="flex items-center gap-3">
         {/* Mobile Toggle */}
         <button
@@ -35,31 +50,64 @@ export default function Header({ onToggleSidebar }) {
         </div>
       </div>
 
-      {/* Right Section */}
-      <div className="flex items-center gap-3">
+      {/* 🔹 Right Section */}
+      <div className="flex items-center gap-3 relative" ref={menuRef}>
         {/* User Info */}
         <div className="hidden sm:flex flex-col leading-tight text-right">
           <span className="text-sm font-medium">{user.name}</span>
           <span className="text-[11px] text-[#2E3092]/70">{user.email}</span>
         </div>
 
-        {/* Avatar */}
-        <div className="relative group">
+        {/* Avatar + Dropdown */}
+        <button
+          onClick={() => setMenuOpen((prev) => !prev)}
+          className="relative focus:outline-none"
+        >
           <img
             src={user.avatarUrl}
             alt={user.name}
-            className="w-9 h-9 rounded-full border border-[#cfd3ff]/70 shadow-sm group-hover:scale-105 transition-transform duration-200"
+            className={`w-9 h-9 rounded-full border border-[#cfd3ff]/70 shadow-sm transition-transform duration-200 ${
+              menuOpen ? "scale-105" : "hover:scale-105"
+            }`}
           />
           <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-white rounded-full shadow-sm"></div>
-        </div>
-
-        {/* Logout Button */}
-        <button
-          onClick={handleLogout}
-          className="px-3 py-1.5 text-xs sm:text-sm rounded-lg bg-white/70 hover:bg-white text-[#2E3092] font-medium border border-[#cfd3ff]/60 shadow-sm transition-all duration-200"
-        >
-          Logout
         </button>
+
+        {/* Dropdown Menu */}
+        {menuOpen && (
+          <div className="absolute right-0 top-12 w-48 bg-white/80 backdrop-blur-md border border-[#d2d5ff]/60 rounded-xl shadow-lg overflow-hidden animate-fade-in">
+            <div className="px-4 py-3 border-b border-[#e0e3ff]/70">
+              <p className="text-sm font-medium text-[#2E3092]">{user.name}</p>
+              <p className="text-xs text-[#2E3092]/70 truncate">{user.email}</p>
+            </div>
+            <ul className="py-1 text-sm">
+              <li>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff] text-[#1c1f4a] transition"
+                  onClick={() => alert("Profile clicked")}
+                >
+                  Profile
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff] text-[#1c1f4a] transition"
+                  onClick={() => alert("Settings clicked")}
+                >
+                  Settings
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 text-[#b82b2b] hover:bg-[#ffeaea] transition"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
