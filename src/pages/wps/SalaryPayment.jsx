@@ -220,24 +220,28 @@ export default function SalaryPayment() {
           </table>
 
           <div className="flex justify-end pt-4">
-            <button
-              onClick={handleSendList}
-              disabled={loadingSend}
-              className={`flex items-center gap-2 bg-green-600 text-white px-5 py-2 rounded-md text-sm font-medium transition ${
-                loadingSend ? "opacity-80 cursor-not-allowed" : "hover:bg-green-700"
-              }`}
-            >
-              {loadingSend ? (
-                <>
-                  <Loader2 className="animate-spin" size={16} /> Sending...
-                </>
-              ) : (
-                <>
-                  <Upload size={16} /> Send list to MOHRE
-                </>
-              )}
-            </button>
-          </div>
+  <button
+    onClick={handleSendList}
+    disabled={loadingSend}
+    className={`relative flex items-center justify-center gap-2 px-5 py-2 rounded-md text-sm font-medium transition 
+      text-white bg-green-600 hover:bg-green-700 
+      ${loadingSend ? "opacity-90 cursor-wait" : ""}`}
+    style={{ minWidth: "180px", height: "40px" }}
+  >
+    {loadingSend ? (
+      <>
+        <Loader2 className="animate-spin w-4 h-4" />
+        <span className="text-white/90">Sending...</span>
+      </>
+    ) : (
+      <>
+        <Upload className="w-4 h-4" />
+        <span>Send list to MOHRE</span>
+      </>
+    )}
+  </button>
+</div>
+
         </div>
       )}
 
