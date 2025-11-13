@@ -23,19 +23,18 @@ export default function Otp() {
   const handleResend = () => {
     setTimeLeft(45)
     setResendActive(false)
-    console.log("🔁 Resend OTP triggered")
   }
 
-  const handleVerify = () => {
-    if (otp.length === 6) {
-      setLoading(true)
-      console.log("✅ Verifying OTP:", otp)
+  // تبدیل شد برای auto-submit
+  const handleVerify = (code) => {
+    const finalCode = code || otp
 
-      // Simulate verification delay (e.g. API call)
+    if (finalCode.length === 6) {
+      setLoading(true)
       setTimeout(() => {
         setLoading(false)
         navigate("/dashboard")
-      }, 2500)
+      }, 2000)
     } else {
       alert("Please enter a valid 6-digit code.")
     }
@@ -43,7 +42,7 @@ export default function Otp() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#f2f4ff] to-white relative overflow-hidden">
-      {/* LOADING OVERLAY */}
+      
       {loading && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm z-50 transition-all">
           <Loader2 className="w-10 h-10 text-[#2e3092] animate-spin mb-3" />
@@ -53,16 +52,20 @@ export default function Otp() {
         </div>
       )}
 
-      {/* OTP CARD */}
       <div className="w-full max-w-sm bg-white shadow-md rounded-2xl p-6 border border-[#2e3092]/20">
         <h2 className="text-center text-lg font-semibold text-[#2e3092] mb-4">
           Enter Verification Code
         </h2>
 
         <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-          <OtpInput length={6} onChange={setOtp} />
+          
+          {/* Luxury Dubai OTP Input */}
+          <OtpInput 
+            length={6} 
+            onChange={setOtp} 
+            onComplete={(code) => handleVerify(code)} 
+          />
 
-          {/* Countdown Timer */}
           <div className="text-center mt-2 text-sm text-gray-600">
             {resendActive ? (
               <button
@@ -83,18 +86,16 @@ export default function Otp() {
             )}
           </div>
 
-          {/* Verify button */}
-          <button
-            type="button"
-            onClick={handleVerify}
-            disabled={loading}
-            className={`w-full ${
-              loading ? "bg-gray-400" : "bg-[#2e3092] hover:bg-[#23246e]"
-            } text-white mt-4 py-2 rounded-lg text-sm font-medium transition flex items-center justify-center space-x-2`}
-          >
-            {!loading && <KeyRound className="w-4 h-4" />}
-            <span>{loading ? "Please wait..." : "Verify & Login"}</span>
-          </button>
+          {!loading && (
+            <button
+              type="button"
+              onClick={() => handleVerify()}
+              className="w-full bg-[#2e3092] hover:bg-[#23246e] text-white mt-4 py-2 rounded-lg text-sm font-medium transition flex items-center justify-center space-x-2"
+            >
+              <KeyRound className="w-4 h-4" />
+              <span>Verify & Login</span>
+            </button>
+          )}
 
           <p
             onClick={() => navigate("/")}
