@@ -21,6 +21,8 @@ import Refund from "./pages/wps/Refund";
 import Reports from "./pages/wps/Reports";
 import WpsPage from "./pages/wps/WpsPage";
 import TransitionWrapper from "./components/TransitionWrapper";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 
 import MasterPage from "./layouts/MasterPage";
 
@@ -86,6 +88,9 @@ function AppRoutes() {
               <Route path="/wps/salary" element={<SalaryPayment />} />
               <Route path="/wps/refund" element={<Refund />} />
               <Route path="/wps/reports" element={<Reports />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/settings" element={<Settings />} />
+
             </Route>
 
             {/* Fallback */}

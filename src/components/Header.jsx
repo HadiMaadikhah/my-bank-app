@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({ onToggleSidebar }) {
+  const navigate = useNavigate();
+
   const user = {
     name: "Hadi Maadikhah",
     email: "hadi.Maadikhah.info@gmail.com",
@@ -15,7 +18,7 @@ export default function Header({ onToggleSidebar }) {
     window.location.href = "/login";
   };
 
-  // ✅ بستن منوی پروفایل وقتی بیرون کلیک میشه
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -28,8 +31,10 @@ export default function Header({ onToggleSidebar }) {
 
   return (
     <header className="h-16 flex items-center justify-between px-4 sm:px-6 bg-gradient-to-r from-[#f7f8ff]/90 via-[#ebedff]/90 to-[#dfe3ff]/90 text-[#1c1f4a] border-b border-[#cfd3ff]/70 shadow-sm backdrop-blur-xl sticky top-0 z-50">
-      {/* 🔹 Left Section */}
+      
+      {/* Left Section */}
       <div className="flex items-center gap-3">
+
         {/* Mobile Toggle */}
         <button
           className="md:hidden p-2 rounded-lg hover:bg-[#2E3092]/10 focus:outline-none focus:ring-2 focus:ring-[#2E3092]/20 transition"
@@ -39,7 +44,7 @@ export default function Header({ onToggleSidebar }) {
           <span className="text-xl text-[#2E3092]">☰</span>
         </button>
 
-        {/* Logo / Title */}
+        {/* Logo */}
         <div className="flex items-center gap-2">
           <span className="text-lg font-semibold tracking-wide text-[#2E3092]">
             MyBank
@@ -50,15 +55,16 @@ export default function Header({ onToggleSidebar }) {
         </div>
       </div>
 
-      {/* 🔹 Right Section */}
+      {/* Right Section */}
       <div className="flex items-center gap-3 relative" ref={menuRef}>
+
         {/* User Info */}
         <div className="hidden sm:flex flex-col leading-tight text-right">
           <span className="text-sm font-medium">{user.name}</span>
           <span className="text-[11px] text-[#2E3092]/70">{user.email}</span>
         </div>
 
-        {/* Avatar + Dropdown */}
+        {/* Avatar */}
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
           className="relative focus:outline-none"
@@ -76,27 +82,41 @@ export default function Header({ onToggleSidebar }) {
         {/* Dropdown Menu */}
         {menuOpen && (
           <div className="absolute right-0 top-12 w-48 bg-white/80 backdrop-blur-md border border-[#d2d5ff]/60 rounded-xl shadow-lg overflow-hidden animate-fade-in">
+            
             <div className="px-4 py-3 border-b border-[#e0e3ff]/70">
               <p className="text-sm font-medium text-[#2E3092]">{user.name}</p>
               <p className="text-xs text-[#2E3092]/70 truncate">{user.email}</p>
             </div>
+
             <ul className="py-1 text-sm">
+
+              {/* Profile */}
               <li>
                 <button
                   className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff] text-[#1c1f4a] transition"
-                  onClick={() => alert("Profile clicked")}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/profile");
+                  }}
                 >
                   Profile
                 </button>
               </li>
+
+              {/* Settings */}
               <li>
                 <button
                   className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff] text-[#1c1f4a] transition"
-                  onClick={() => alert("Settings clicked")}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/settings");
+                  }}
                 >
                   Settings
                 </button>
               </li>
+
+              {/* Logout */}
               <li>
                 <button
                   onClick={handleLogout}
@@ -105,7 +125,9 @@ export default function Header({ onToggleSidebar }) {
                   Logout
                 </button>
               </li>
+
             </ul>
+
           </div>
         )}
       </div>
