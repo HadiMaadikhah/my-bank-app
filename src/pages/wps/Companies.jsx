@@ -9,10 +9,14 @@ import {
   AlertTriangle,
   CheckCircle2,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Companies() {
   const [showModal, setShowModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(null);
+
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
 
   const [companies, setCompanies] = useState([
     {
@@ -47,8 +51,9 @@ export default function Companies() {
 
   const handleAddCompany = (e) => {
     e.preventDefault();
+
     if (!newCompany.name || !newCompany.tradeLicense || !newCompany.employees)
-      return alert("Please fill in all fields.");
+      return alert(t("companies_fill_all_fields"));
 
     setCompanies((prev) => [
       ...prev,
@@ -60,6 +65,7 @@ export default function Companies() {
         active: newCompany.status === "Active",
       },
     ]);
+
     setShowModal(false);
     setNewCompany({ name: "", tradeLicense: "", employees: "", status: "Active" });
   };
@@ -75,41 +81,42 @@ export default function Companies() {
 
   return (
     <WpsPageLayout
-      title="Companies"
-      subtitle="View and manage the list of registered companies."
+      title={t("companies_title")}
+      subtitle={t("companies_subtitle")}
     >
-      <div className="flex flex-col gap-6">
+      <div className={`flex flex-col gap-6 ${isArabic ? "text-right" : "text-left"}`}>
+
         {/* Header Actions */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold text-[#2E3092]">
-              Registered Companies
+              {t("companies_registered")}
             </h2>
-            <p className="text-sm text-gray-500">
-              Manage company profiles and registration details.
-            </p>
+            <p className="text-sm text-gray-500">{t("companies_manage_desc")}</p>
           </div>
+
           <button
             onClick={() => setShowModal(true)}
             className="inline-flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm transition"
           >
             <Plus size={16} />
-            Add Company
+            {t("companies_add_btn")}
           </button>
         </div>
 
         {/* Table */}
         <div className="bg-white/80 backdrop-blur-md border border-[#d9dbff]/60 shadow-sm rounded-xl overflow-x-auto">
-          <table className="min-w-full text-sm">
-            <thead className="bg-[#2E3092] text-white text-left">
+          <table className={`min-w-full text-sm ${isArabic ? "text-right" : "text-left"}`}>
+            <thead className="bg-[#2E3092] text-white">
               <tr>
-                <th className="py-3 px-4">Company Name</th>
-                <th className="py-3 px-4">Trade License</th>
-                <th className="py-3 px-4">Employees</th>
-                <th className="py-3 px-4 text-center">Status</th>
-                <th className="py-3 px-4 text-center">Actions</th>
+                <th className="py-3 px-4">{t("companies_table_name")}</th>
+                <th className="py-3 px-4">{t("companies_table_license")}</th>
+                <th className="py-3 px-4">{t("companies_table_employees")}</th>
+                <th className="py-3 px-4 text-center">{t("companies_table_status")}</th>
+                <th className="py-3 px-4 text-center">{t("companies_table_actions")}</th>
               </tr>
             </thead>
+
             <tbody>
               {companies.map((c) => (
                 <tr
@@ -123,6 +130,7 @@ export default function Companies() {
                   <td className="py-3 px-4 font-medium text-[#1a1c3b]">{c.name}</td>
                   <td className="py-3 px-4 text-gray-600">{c.tradeLicense}</td>
                   <td className="py-3 px-4 text-gray-600">{c.employees}</td>
+
                   <td className="py-3 px-4 text-center">
                     <span
                       className={`px-2.5 py-1 rounded-full text-xs font-medium ${
@@ -131,11 +139,13 @@ export default function Companies() {
                           : "bg-red-100 text-red-700"
                       }`}
                     >
-                      {c.active ? "Active" : "Inactive"}
+                      {c.active ? t("companies_status_active") : t("companies_status_inactive")}
                     </span>
                   </td>
+
                   <td className="py-3 px-4 text-center">
                     <div className="flex justify-center gap-4 text-[#2E3092]">
+
                       {/* iOS Toggle */}
                       <button
                         onClick={() => setConfirmModal(c)}
@@ -151,10 +161,11 @@ export default function Companies() {
                         />
                       </button>
 
-                      <button className="hover:text-[#1e217a]" title="Edit">
+                      <button className="hover:text-[#1e217a]" title={t("edit")}>
                         <Edit size={16} />
                       </button>
-                      <button className="hover:text-red-600" title="Delete">
+
+                      <button className="hover:text-red-600" title={t("delete")}>
                         <Trash2 size={16} />
                       </button>
                     </div>
@@ -168,51 +179,41 @@ export default function Companies() {
         {/* Confirm Modal */}
         {confirmModal && (
           <>
-            <div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-              onClick={() => setConfirmModal(null)}
-            />
+            <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40" onClick={() => setConfirmModal(null)} />
+
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-              <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm text-center animate-fade-in border border-[#d9dbff]/60">
+              <div className={`bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm text-center animate-fade-in border border-[#d9dbff]/60 ${isArabic ? "text-right" : "text-center"}`}>
+                
                 {confirmModal.active ? (
-                  <AlertTriangle
-                    size={50}
-                    className="text-red-500 mx-auto mb-3"
-                  />
+                  <AlertTriangle size={50} className="text-red-500 mx-auto mb-3" />
                 ) : (
-                  <CheckCircle2
-                    size={50}
-                    className="text-green-500 mx-auto mb-3"
-                  />
+                  <CheckCircle2 size={50} className="text-green-500 mx-auto mb-3" />
                 )}
+
                 <h3 className="text-lg font-semibold text-[#2E3092] mb-2">
-                  {confirmModal.active
-                    ? "Deactivate Company?"
-                    : "Activate Company?"}
+                  {confirmModal.active ? t("companies_deactivate_title") : t("companies_activate_title")}
                 </h3>
+
                 <p className="text-sm text-gray-600 mb-6">
-                  Are you sure you want to{" "}
-                  <span className="font-semibold">
-                    {confirmModal.active ? "deactivate" : "activate"}
-                  </span>{" "}
+                  {t("companies_confirm_text")}{" "}
+                  <span className="font-semibold">{t(confirmModal.active ? "companies_deactivate" : "companies_activate")}</span>{" "}
                   <span className="text-[#2E3092]">{confirmModal.name}</span>?
                 </p>
+
                 <div className="flex justify-center gap-4">
                   <button
                     onClick={() => setConfirmModal(null)}
                     className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition"
                   >
-                    Cancel
+                    {t("cancel")}
                   </button>
+
                   <button
                     onClick={() => toggleCompanyStatus(confirmModal.id)}
-                    className={`px-4 py-2 text-sm rounded-lg shadow-sm transition text-white ${
-                      confirmModal.active
-                        ? "bg-red-600 hover:bg-red-700"
-                        : "bg-green-600 hover:bg-green-700"
-                    }`}
+                    className={`px-4 py-2 text-sm rounded-lg shadow-sm transition text-white 
+                      ${confirmModal.active ? "bg-red-600 hover:bg-red-700" : "bg-green-600 hover:bg-green-700"}`}
                   >
-                    {confirmModal.active ? "Deactivate" : "Activate"}
+                    {confirmModal.active ? t("companies_deactivate") : t("companies_activate")}
                   </button>
                 </div>
               </div>
@@ -223,55 +224,45 @@ export default function Companies() {
         {/* Add Company Modal */}
         {showModal && (
           <>
-            <div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-              onClick={() => setShowModal(false)}
-            />
+            <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40" onClick={() => setShowModal(false)} />
+
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-              <div className="w-full max-w-md bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#cfd3ff]/70 p-6 relative animate-fade-in">
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="absolute top-3 right-3 text-gray-500 hover:text-[#2E3092] transition"
-                >
+              <div className={`w-full max-w-md bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#cfd3ff]/70 p-6 relative animate-fade-in ${isArabic ? "text-right" : ""}`}>
+                
+                <button onClick={() => setShowModal(false)} className="absolute top-3 right-3 text-gray-500 hover:text-[#2E3092] transition">
                   <X size={20} />
                 </button>
 
-                <div className="flex items-center gap-2 mb-4">
+                <div className={`flex items-center gap-2 mb-4 ${isArabic ? "flex-row-reverse" : ""}`}>
                   <Building2 className="text-[#2E3092]" size={22} />
                   <h2 className="text-lg font-semibold text-[#2E3092]">
-                    Add New Company
+                    {t("companies_add_title")}
                   </h2>
                 </div>
 
                 <form onSubmit={handleAddCompany} className="space-y-4">
+                  
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Company Name
+                      {t("companies_name")}
                     </label>
                     <input
                       type="text"
                       value={newCompany.name}
-                      onChange={(e) =>
-                        setNewCompany({ ...newCompany, name: e.target.value })
-                      }
-                      placeholder="Enter company name"
+                      onChange={(e) => setNewCompany({ ...newCompany, name: e.target.value })}
+                      placeholder={t("companies_name_placeholder")}
                       className="w-full px-3 py-2 border border-[#d0d4ff]/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E3092]/40"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Trade License Number
+                      {t("companies_license")}
                     </label>
                     <input
                       type="text"
                       value={newCompany.tradeLicense}
-                      onChange={(e) =>
-                        setNewCompany({
-                          ...newCompany,
-                          tradeLicense: e.target.value,
-                        })
-                      }
+                      onChange={(e) => setNewCompany({ ...newCompany, tradeLicense: e.target.value })}
                       placeholder="e.g. LIC-12345"
                       className="w-full px-3 py-2 border border-[#d0d4ff]/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E3092]/40"
                     />
@@ -279,32 +270,25 @@ export default function Companies() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Employees Count
+                      {t("companies_employees")}
                     </label>
                     <input
                       type="number"
                       min="0"
                       value={newCompany.employees}
-                      onChange={(e) =>
-                        setNewCompany({
-                          ...newCompany,
-                          employees: e.target.value,
-                        })
-                      }
-                      placeholder="Enter number of employees"
+                      onChange={(e) => setNewCompany({ ...newCompany, employees: e.target.value })}
+                      placeholder={t("companies_employees_placeholder")}
                       className="w-full px-3 py-2 border border-[#d0d4ff]/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E3092]/40"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Status
+                      {t("companies_status")}
                     </label>
                     <select
                       value={newCompany.status}
-                      onChange={(e) =>
-                        setNewCompany({ ...newCompany, status: e.target.value })
-                      }
+                      onChange={(e) => setNewCompany({ ...newCompany, status: e.target.value })}
                       className="w-full px-3 py-2 border border-[#d0d4ff]/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2E3092]/40"
                     >
                       <option>Active</option>
@@ -318,20 +302,23 @@ export default function Companies() {
                       onClick={() => setShowModal(false)}
                       className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition"
                     >
-                      Cancel
+                      {t("cancel")}
                     </button>
+
                     <button
                       type="submit"
                       className="px-4 py-2 text-sm bg-[#2E3092] hover:bg-[#23246e] text-white rounded-lg shadow-sm transition"
                     >
-                      Save
+                      {t("save")}
                     </button>
                   </div>
+
                 </form>
               </div>
             </div>
           </>
         )}
+
       </div>
     </WpsPageLayout>
   );

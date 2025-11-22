@@ -1,8 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Globe } from "lucide-react";
 
 export default function Header({ onToggleSidebar }) {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === "ar";
 
   const user = {
     name: "Hadi Maadikhah",
@@ -11,6 +16,7 @@ export default function Header({ onToggleSidebar }) {
   };
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
   const menuRef = useRef(null);
 
   const handleLogout = () => {
@@ -18,11 +24,20 @@ export default function Header({ onToggleSidebar }) {
     window.location.href = "/login";
   };
 
+  // Language Switch
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = lang;
+    setLangOpen(false);
+  };
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false);
+        setLangOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -47,19 +62,47 @@ export default function Header({ onToggleSidebar }) {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <span className="text-lg font-semibold tracking-wide text-[#2E3092]">
-            MyBank
+            {t("header_bank")}
           </span>
           <span className="hidden sm:inline text-xs opacity-70 font-light">
-            Customer Portal
+            {t("header_portal")}
           </span>
         </div>
       </div>
 
       {/* Right Section */}
-      <div className="flex items-center gap-3 relative" ref={menuRef}>
+      <div className="flex items-center gap-4 relative" ref={menuRef}>
+
+        {/* Language Selector */}
+        <div className="relative">
+          <button
+            onClick={() => setLangOpen(!langOpen)}
+            className="px-2 py-1 bg-[#2E3092] text-white rounded-lg flex items-center gap-1 text-sm hover:bg-[#23246e]"
+          >
+            <Globe className="w-4 h-4" />
+            {isArabic ? "العربية" : "English"}
+          </button>
+
+          {langOpen && (
+            <div className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-lg border">
+              <button
+                onClick={() => changeLanguage("en")}
+                className="px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+              >
+                🇦🇪 English
+              </button>
+              <button
+                onClick={() => changeLanguage("ar")}
+                className="px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+              >
+                🇸🇦 العربية
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* User Info */}
-        <div className="hidden sm:flex flex-col leading-tight text-right">
+        <div className={`hidden sm:flex flex-col leading-tight ${isArabic ? "text-left" : "text-right"}`}>
           <span className="text-sm font-medium">{user.name}</span>
           <span className="text-[11px] text-[#2E3092]/70">{user.email}</span>
         </div>
@@ -82,8 +125,8 @@ export default function Header({ onToggleSidebar }) {
         {/* Dropdown Menu */}
         {menuOpen && (
           <div className="absolute right-0 top-12 w-48 bg-white/80 backdrop-blur-md border border-[#d2d5ff]/60 rounded-xl shadow-lg overflow-hidden animate-fade-in">
-            
-            <div className="px-4 py-3 border-b border-[#e0e3ff]/70">
+
+            <div className="px-4 py-3 border-b">
               <p className="text-sm font-medium text-[#2E3092]">{user.name}</p>
               <p className="text-xs text-[#2E3092]/70 truncate">{user.email}</p>
             </div>
@@ -93,26 +136,26 @@ export default function Header({ onToggleSidebar }) {
               {/* Profile */}
               <li>
                 <button
-                  className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff] text-[#1c1f4a] transition"
+                  className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff]"
                   onClick={() => {
                     setMenuOpen(false);
                     navigate("/profile");
                   }}
                 >
-                  Profile
+                  {t("header_profile")}
                 </button>
               </li>
 
               {/* Settings */}
               <li>
                 <button
-                  className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff] text-[#1c1f4a] transition"
+                  className="w-full text-left px-4 py-2 hover:bg-[#f3f4ff]"
                   onClick={() => {
                     setMenuOpen(false);
                     navigate("/settings");
                   }}
                 >
-                  Settings
+                  {t("header_settings")}
                 </button>
               </li>
 
@@ -120,9 +163,9 @@ export default function Header({ onToggleSidebar }) {
               <li>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 text-[#b82b2b] hover:bg-[#ffeaea] transition"
+                  className="w-full text-left px-4 py-2 text-[#b82b2b] hover:bg-[#ffeaea]"
                 >
-                  Logout
+                  {t("header_logout")}
                 </button>
               </li>
 

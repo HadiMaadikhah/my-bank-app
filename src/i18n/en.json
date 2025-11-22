@@ -1,0 +1,344 @@
+{
+  "uae_pass": "Login with UAE PASS",
+  "login_desc": "A single trusted digital identity for all citizens, residents and visitors.",
+  "or": "OR",
+  "enter_mobile": "Enter your mobile number",
+  "send_otp": "Send OTP",
+  "change_lang": "عربي",
+  
+  "otp_title": "Enter Verification Code",
+  "otp_verifying": "Verifying your code...",
+  "otp_resend": "Resend Code",
+  "otp_resend_wait": "Resend available in",
+  "otp_verify": "Verify & Login",
+  "otp_change_mobile": "Change mobile number",
+
+  "dashboard_title": "Banking",
+  "balance_distribution": "Account Balance Distribution",
+  "profiles": "Profiles",
+  "accounts": "Accounts",
+  "last_transactions": "Last 5 Transactions",
+  "date": "Date",
+  "type": "Type",
+  "amount": "Amount",
+  "set_salary": "Set as Salary",
+  "refresh": "Refresh",
+  "save": "Save",
+  "profile_personal": "Personal",
+  "profile_business": "Business",
+  "profile_joint": "Joint",
+
+  "header_bank": "MyBank",
+  "header_portal": "Corporate Portal",
+  "header_profile": "Profile",
+  "header_settings": "Settings",
+  "header_logout": "Logout",
+
+  "menu_facilities": "Facilities",
+  "menu_wps_module": "WPS Module",
+  "menu_register": "Register / Deregister",
+  "menu_companies": "Companies",
+  "menu_employees": "Employees",
+  "menu_salary": "Salary Payment",
+  "menu_refund": "Refund",
+  "menu_reports": "Reports",
+  "menu_requests": "Requests",
+  "menu_customer_services": "Customer Services",
+  "menu_footer": "Empowering Payroll Solutions",
+
+
+  "set_salary_success": "Salary account updated successfully.",
+  "refresh_msg": "Refreshing transactions...",
+  "save_msg": "Changes saved successfully.",
+
+  "companies_title": "Companies",
+  "companies_subtitle": "View and manage the list of registered companies.",
+
+  "companies_registered": "Registered Companies",
+  "companies_manage_desc": "Manage company profiles and registration details.",
+
+  "companies_add_btn": "Add Company",
+
+  "companies_table_name": "Company Name",
+  "companies_table_license": "Trade License",
+  "companies_table_employees": "Employees",
+  "companies_table_status": "Status",
+  "companies_table_actions": "Actions",
+
+  "companies_status_active": "Active",
+  "companies_status_inactive": "Inactive",
+
+  "companies_activate_title": "Activate Company?",
+  "companies_deactivate_title": "Deactivate Company?",
+
+  "companies_activate": "Activate",
+  "companies_deactivate": "Deactivate",
+
+  "companies_confirm_text": "Are you sure you want to",
+
+  "companies_add_title": "Add New Company",
+  "companies_name": "Company Name",
+  "companies_name_placeholder": "Enter company name",
+
+  "companies_license": "Trade License Number",
+
+  "companies_employees": "Employees Count",
+  "companies_employees_placeholder": "Enter number of employees",
+
+  "companies_status": "Status",
+
+  "companies_fill_all_fields": "Please fill in all fields.",
+
+  "edit": "Edit",
+  "delete": "Delete",
+  "cancel": "Cancel",
+
+  "employees_title": "Employees",
+  "employees_subtitle": "Manage your employee details and salary records.",
+
+  "employees_tab_list": "List of Employees",
+  "employees_tab_payments": "Employees Payment Status",
+
+  "employees_search_label": "Search (Name / ID / EID / Company)",
+  "employees_search_placeholder": "Type to search...",
+
+  "employees_filter_status": "Status",
+  "employees_filter_activity": "Activity",
+  "employees_filter_active24": "Active in last 24 months",
+
+  "employees_add_btn": "Add Employee",
+  "employees_showing": "Showing",
+  "employees_records": "record(s)",
+
+  "employees_table_name": "Name",
+  "employees_table_id": "Employee ID",
+  "employees_table_department": "Department",
+  "employees_table_company": "Company",
+  "employees_table_passport": "EID / Passport No",
+  "employees_table_join": "Join Date",
+  "employees_table_iban": "IBAN",
+  "employees_table_status": "Status",
+  "employees_table_actions": "Actions",
+
+  "employees_no_results": "No employees found with current filters.",
+  "employees_no_results_pay": "No records with current filters.",
+
+  "employees_pay_employee": "Employee",
+  "employees_pay_payment_status": "Payment Status",
+  "employees_pay_last_active": "Last Active",
+
+  "employees_mark_paid": "Mark Paid",
+  "employees_suspend": "Suspend",
+  "employees_delete": "Delete",
+
+  "employees_add_title": "Add New Employee",
+  "employees_full_name": "Full Name",
+  "employees_full_name_placeholder": "e.g. Ahmed Khan",
+
+  "employees_emp_id": "Employee ID",
+  "employees_emp_id_placeholder": "e.g. EMP-12345",
+
+  "employees_department": "Department",
+  "employees_department_placeholder": "e.g. IT",
+
+  "employees_company": "Company",
+  "employees_company_placeholder": "e.g. BlueWave Technologies LLC",
+
+  "employees_join_date": "Join Date",
+
+  "employees_iban": "IBAN",
+  "employees_iban_placeholder": "AE00 0000 0000 0000",
+
+  "employees_eid_passport": "EID / Passport No",
+  "employees_eid_passport_placeholder": "e.g. EID-784-XXXX or Passport No",
+
+  "employees_status": "Status",
+  "employees_payment_status": "Payment Status",
+  "employees_status_active": "Active",
+  "employees_status_inactive": "Inactive",
+  "employees_status_terminated": "Terminated",
+
+  "employees_pay_paid": "Paid",
+  "employees_pay_not_paid": "Not paid",
+  "employees_pay_failed": "Failed",
+
+    "salary_title": "Salary Payment",
+  "salary_subtitle": "Manage and process employee salary payments.",
+
+  "salary_tab_details": "Salary Payment Details",
+  "salary_tab_send": "Send List",
+  "salary_tab_action": "Salary Payment Action",
+
+  "salary_table1_name": "Name",
+  "salary_table1_eid": "EID / Passport No",
+  "salary_table1_last_payment": "Last Payment",
+  "salary_table1_salary_amount": "Salary Amount (AED)",
+  "salary_table1_select": "Select to Pay",
+  "salary_table1_action": "Action",
+
+  "salary_edit_amount": "Edit Amount",
+
+  "salary_btn_go_payment": "Go to Payment",
+
+  "salary_error_select_employee": "Please select at least one employee.",
+  "salary_info_proceed_list": "Proceeding to payment list...",
+
+  "salary_toast_update_success": "Salary details updated successfully!",
+  "salary_toast_send_list_success": "Salary list sent to MOHRE successfully!",
+  "salary_toast_send_notification_success": "Salary payment notification sent successfully!",
+
+  "salary_send_title": "Salary Payment Details of Corporate",
+  "salary_send_desc": "Select payment date and submit to generate list.",
+  "salary_send_payment_date": "Payment Date",
+
+  "salary_send_table_name": "Name",
+  "salary_send_table_eid": "EID / Passport No",
+  "salary_send_table_salary_amount": "Salary Amount",
+  "salary_send_table_payment_date": "Date of Payment",
+
+  "salary_btn_send_list_mohre": "Send list to MOHRE",
+  "salary_send_sending": "Sending...",
+
+  "salary_action_hint": "Once the list is sent successfully and ACK is received, this tab becomes active.",
+
+  "salary_action_table_name": "Name",
+  "salary_action_table_eid": "EID / Passport No",
+  "salary_action_table_salary_amount": "Salary Amount",
+  "salary_action_table_payment_date": "Date of Payment",
+
+  "salary_action_export_file": "Export Salary File",
+  "salary_action_send_bulk": "Send bulk payment details to MOHRE",
+  "salary_action_send_notification": "Send salary payment notification to MOHRE",
+
+  "salary_edit_title": "Edit Salary for {{name}}",
+  "salary_edit_leaves": "Leaves",
+  "salary_edit_days_paid": "Days Paid",
+  "salary_edit_allowance": "Allowance",
+  "salary_edit_refund": "Refund Amount",
+  "salary_edit_final": "Final Amount",
+
+  "salary_summary_title": "Confirm Salary Payment Notification",
+  "salary_summary_total_employees": "Total Employees:",
+  "salary_summary_total_amount": "Total Amount:",
+  "salary_summary_success_no": "Successful No:",
+  "salary_summary_failed_no": "Failed No:",
+  "salary_summary_success_amount": "Successful Amount:",
+  "salary_summary_failed_amount": "Failed Amount:",
+  "salary_summary_verify_text": "Please verify that the information is correct.",
+  "salary_summary_btn_submit": "Submit",
+  "salary_summary_btn_sending": "Sending...",
+
+  "employees_required_fields": "Please fill all required fields.",
+  "employees_added_success": "Employee added successfully.",
+  "employees_removed": "Employee removed.",
+  "employees_marked_paid": "Payment marked as Paid.",
+  "employees_suspended": "Employee set to Inactive.",
+
+  "refund_title": "WPS Refund Management",
+  "refund_subtitle": "Submit and track refund requests for salary payment issues.",
+
+  "refund_tab_request": "Refund Request",
+  "refund_tab_status": "Refund Status",
+
+  "refund_request_title": "Request Refund",
+  "refund_btn_request": "Request Refund",
+
+  "refund_table_name": "Name",
+  "refund_table_eid": "EID / Passport",
+  "refund_table_salary": "Salary Amount",
+  "refund_table_payment_date": "Payment Date",
+  "refund_table_request_date": "Refund Request Date",
+  "refund_table_status": "Status",
+  "refund_table_desc": "Description",
+
+  "refund_status_title": "Refund Status",
+  "refund_status_all": "All Status",
+  "refund_status_done": "Done",
+  "refund_status_failed": "Failed",
+
+  "refund_search_placeholder": "Search by name or EID...",
+  "refund_filter_payment_date": "Payment date",
+  "refund_filters_reset": "Reset Filters",
+
+  "refund_no_records": "No records found.",
+  "refund_showing": "Showing",
+  "refund_of": "of",
+  "refund_records": "records",
+
+  "refund_confirm_selected": "Confirm Selected Refunds",
+  "refund_selected_desc": "The following employees will be included in this refund request:",
+  
+  "refund_salary": "Salary",
+  "refund_payment_date": "Payment date",
+  "refund_final_amount": "Final Amount",
+
+  "refund_continue": "Continue",
+
+  "refund_final_title": "Are you sure?",
+  "refund_final_desc": "Do you want to submit this refund request for the selected employees?",
+
+  "refund_submitted": "Refund request submitted successfully.",
+  "refund_yes_submit": "Yes, Submit",
+
+  "reports_title": "Reports",
+  "reports_subtitle": "View detailed salary payment history for each registered company.",
+
+  "reports_employees": "Employees",
+  "reports_last3months": "Salary Payments (Last 3 Months)",
+  "reports_total_paid": "Total Paid",
+  "reports_details": "Details",
+
+  "reports_employee": "Employee",
+  "reports_amount": "Amount",
+  "reports_date": "Date",
+
+  "register_title": "WPS Register / Deregister",
+  "register_tab_register": "Register",
+  "register_tab_deregister": "Deregister",
+
+  "register_type_sponsor": "Domestic Sponsor",
+  "register_type_company": "Company",
+
+  "register_companies_list": "List of Companies",
+  "register_select_company": "Select company...",
+  "register_company_registered": "Already REGISTERED!",
+  "register_company_not_registered": "NOT REGISTERED!",
+
+  "register_trade_license": "Trade License",
+  "register_trade_license_placeholder": "Enter trade license number",
+
+  "register_license_place": "License Place",
+  "register_license_place_placeholder": "Enter license place",
+
+  "register_info1": "Info 1",
+  "register_info2": "Info 2",
+  "register_info3": "Info 3",
+
+  "register_info_placeholder": "Enter information",
+
+  "register_bank_selection": "Bank Selection",
+  "register_select_bank": "Select Bank...",
+
+  "register_upload_document": "Upload Document",
+  "register_upload_choose": "Choose File",
+  "register_no_file": "No file chosen",
+
+  "register_submit": "Submit",
+  "register_reset": "Reset",
+
+  "register_error_type": "Please select a registration type first.",
+  "register_error_company": "Please select a company.",
+  "register_success_submitted": "Form submitted successfully!",
+  "register_success_reset": "Form cleared.",
+
+  "deregister_title": "Request to Deregister from BSI for WPS Payment",
+
+  "deregister_confirm_text": "I hereby confirm that I have requested to deregister from",
+  "deregister_confirm_strong": "WPS payment by BSI.",
+
+  "deregister_submit": "Submit",
+  "deregister_error_confirm": "Please confirm before submitting.",
+  "deregister_success": "Deregistration request submitted."
+
+
+}

@@ -5,9 +5,12 @@ import {
   Route,
   Navigate,
   useLocation,
+  Outlet,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 import PageLoader from "./components/PageLoader";
 
 import Login from "./pages/Login";
@@ -23,64 +26,51 @@ import WpsPage from "./pages/wps/WpsPage";
 import TransitionWrapper from "./components/TransitionWrapper";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
-
 import MasterPage from "./layouts/MasterPage";
 
+/* ---------------- Protected Layout ---------------- */
 function ProtectedRoutes() {
-  const location = useLocation();
-  const [loading, setLoading] = useState(false);
-
-  // TEST auth — later replace with real auth/context
   const isAuthenticated = true;
 
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 800);
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+}
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
+/* ---------------- Wrapper for animations ---------------- */
+function AnimatedOutletWrapper() {
+  const location = useLocation();
   return (
-    <>
-      <PageLoader loading={loading} />
-      <AnimatePresence mode="wait">
-        <TransitionWrapper key={location.pathname}>
-          {/* Master shell */}
-          <MasterPage />
-        </TransitionWrapper>
-      </AnimatePresence>
-    </>
+    <AnimatePresence mode="wait">
+      <TransitionWrapper key={location.pathname}>
+        <Outlet />
+      </TransitionWrapper>
+    </AnimatePresence>
   );
 }
 
+/* ---------------- Main App Routes ---------------- */
 function AppRoutes() {
-  const location = useLocation();
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
 
   return (
-    <>
-      {/* Public routes with loader + animation (optional) */}
-      <AnimatePresence mode="wait">
-        <TransitionWrapper key={location.pathname}>
-          <Routes location={location}>
-            {/* Redirect root to login for now */}
-            <Route path="/" element={<Navigate to="/login" replace />} />
+    <div className={isArabic ? "font-arabic rtl" : "ltr"}>
+      <Routes>
 
-            {/* Public */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/otp" element={<Otp />} />
+        {/* Public */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/otp" element={<Otp />} />
 
-            {/* Protected (render MasterPage and nest inner pages) */}
-            <Route element={<ProtectedRoutes />}>
-              <Route
-                path="/dashboard"
-                element={
-                  // MasterPage خود Outlet دارد، پس صفحه‌ی واقعی داخل روت زیر رندر می‌شود
-                  <Dashboard />
-                }
-              />
+        {/* Protected */}
+        <Route element={<ProtectedRoutes />}>
+
+          {/* Layout ثابت */}
+          <Route element={<MasterPage />}>
+            
+            {/* محتوای وسط که تغییر می‌کند */}
+            <Route element={<AnimatedOutletWrapper />}>
+
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/wps" element={<WpsPage />} />
               <Route path="/wps/register" element={<Register />} />
               <Route path="/wps/companies" element={<Companies />} />
@@ -92,18 +82,21 @@ function AppRoutes() {
               <Route path="/settings" element={<Settings />} />
 
             </Route>
+          </Route>
+        </Route>
 
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
-        </TransitionWrapper>
-      </AnimatePresence>
-    </>
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+
+      </Routes>
+    </div>
   );
 }
 
+/* ---------------- Root ---------------- */
 export default function App() {
-  const basename = import.meta.env.MODE === "production" ? "/my-bank-app" : "/";
+  const basename =
+    import.meta.env.MODE === "production" ? "/my-bank-app" : "/";
   return (
     <Router basename={basename}>
       <AppRoutes />

@@ -1,0 +1,348 @@
+{
+  "uae_pass": "تسجيل الدخول عبر الهوية الرقمية",
+  "login_desc": "هوية رقمية موحدة وموثوقة لجميع المواطنين والمقيمين والزوار.",
+  "or": "أو",
+  "enter_mobile": "أدخل رقم الهاتف",
+  "send_otp": "إرسال رمز التحقق",
+  "change_lang": "EN",
+
+  "otp_title": "أدخل رمز التحقق",
+  "otp_verifying": "جاري التحقق من الرمز...",
+  "otp_resend": "إعادة إرسال الرمز",
+  "otp_resend_wait": "إمكانية الإرسال بعد",
+  "otp_verify": "تأكيد الدخول",
+  "otp_change_mobile": "تغيير رقم الهاتف",
+
+  "dashboard_title": "الخدمات المصرفية",
+  "balance_distribution": "توزيع أرصدة الحسابات",
+  "profiles": "الملفات",
+  "accounts": "الحسابات",
+  "last_transactions": "آخر 5 معاملات",
+  "date": "التاريخ",
+  "type": "النوع",
+  "amount": "المبلغ",
+  "set_salary": "تعيين كحساب راتب",
+  "refresh": "تحديث",
+  "save": "حفظ",
+  "profile_personal": "شخصي",
+  "profile_business": "أعمال",
+  "profile_joint": "مشترك",
+
+  "header_bank": "ماي بنك",
+  "header_portal": "البوابة المؤسسية",
+  "header_profile": "الملف الشخصي",
+  "header_settings": "الإعدادات",
+  "header_logout": "تسجيل الخروج",
+
+  "menu_facilities": "التسهيلات",
+  "menu_wps_module": "نظام حماية الأجور",
+  "menu_register": "تسجيل / إلغاء التسجيل",
+  "menu_companies": "الشركات",
+  "menu_employees": "الموظفون",
+  "menu_salary": "دفع الرواتب",
+  "menu_refund": "إعادة المبالغ",
+  "menu_reports": "التقارير",
+  "menu_requests": "الطلبات",
+  "menu_customer_services": "خدمة العملاء",
+  "menu_footer": "حلول فعّالة لإدارة الرواتب",
+
+  "set_salary_success": "تم تحديث حساب الراتب بنجاح.",
+  "refresh_msg": "جاري تحديث المعاملات...",
+  "save_msg": "تم حفظ التغييرات بنجاح.",
+
+  "companies_title": "الشركات",
+  "companies_subtitle": "عرض وإدارة قائمة الشركات المسجلة.",
+
+  "companies_registered": "الشركات المسجلة",
+  "companies_manage_desc": "إدارة ملفات الشركات وتفاصيل التسجيل.",
+
+  "companies_add_btn": "إضافة شركة",
+
+  "companies_table_name": "اسم الشركة",
+  "companies_table_license": "الرخصة التجارية",
+  "companies_table_employees": "عدد الموظفين",
+  "companies_table_status": "الحالة",
+  "companies_table_actions": "الإجراءات",
+
+  "companies_status_active": "نشط",
+  "companies_status_inactive": "غير نشط",
+
+  "companies_activate_title": "تفعيل الشركة؟",
+  "companies_deactivate_title": "إلغاء تفعيل الشركة؟",
+
+  "companies_activate": "تفعيل",
+  "companies_deactivate": "إلغاء التفعيل",
+
+  "companies_confirm_text": "هل أنت متأكد أنك تريد",
+
+  "companies_add_title": "إضافة شركة جديدة",
+  "companies_name": "اسم الشركة",
+  "companies_name_placeholder": "أدخل اسم الشركة",
+
+  "companies_license": "رقم الرخصة التجارية",
+
+  "companies_employees": "عدد الموظفين",
+  "companies_employees_placeholder": "أدخل عدد الموظفين",
+
+  "companies_status": "الحالة",
+
+  "companies_fill_all_fields": "يرجى تعبئة جميع الحقول.",
+
+  "edit": "تعديل",
+  "delete": "حذف",
+  "cancel": "إلغاء",
+
+  "employees_title": "الموظفون",
+  "employees_subtitle": "إدارة بيانات الموظفين وسجلات الرواتب.",
+
+  "employees_tab_list": "قائمة الموظفين",
+  "employees_tab_payments": "حالة دفع الموظفين",
+
+  "employees_search_label": "بحث (الاسم / رقم الموظف / الهوية / الشركة)",
+  "employees_search_placeholder": "اكتب للبحث...",
+
+  "employees_filter_status": "الحالة",
+  "employees_filter_activity": "النشاط",
+  "employees_filter_active24": "نشط خلال آخر 24 شهراً",
+
+  "employees_add_btn": "إضافة موظف",
+  "employees_showing": "عرض",
+  "employees_records": "سجل",
+
+  "employees_table_name": "الاسم",
+  "employees_table_id": "رقم الموظف",
+  "employees_table_department": "القسم",
+  "employees_table_company": "الشركة",
+  "employees_table_passport": "رقم الهوية / الجواز",
+  "employees_table_join": "تاريخ الانضمام",
+  "employees_table_iban": "رقم الآيبان",
+  "employees_table_status": "الحالة",
+  "employees_table_actions": "الإجراءات",
+
+  "employees_no_results": "لا يوجد موظفون وفقاً لعوامل التصفية الحالية.",
+  "employees_no_results_pay": "لا توجد سجلات وفقاً لعوامل التصفية الحالية.",
+
+  "employees_pay_employee": "الموظف",
+  "employees_pay_payment_status": "حالة الدفع",
+  "employees_pay_last_active": "آخر نشاط",
+
+  "employees_mark_paid": "تحديد كمدفوع",
+  "employees_suspend": "إيقاف",
+  "employees_delete": "حذف",
+
+  "employees_add_title": "إضافة موظف جديد",
+  "employees_full_name": "الاسم الكامل",
+  "employees_full_name_placeholder": "مثال: أحمد خان",
+
+  "employees_emp_id": "رقم الموظف",
+  "employees_emp_id_placeholder": "مثال: EMP-12345",
+
+  "employees_department": "القسم",
+  "employees_department_placeholder": "مثال: تقنية المعلومات",
+
+  "employees_company": "الشركة",
+  "employees_company_placeholder": "مثال: BlueWave Technologies LLC",
+
+  "employees_join_date": "تاريخ الانضمام",
+
+  "employees_iban": "رقم الآيبان",
+  "employees_iban_placeholder": "AE00 0000 0000 0000",
+
+  "employees_eid_passport": "رقم الهوية / الجواز",
+  "employees_eid_passport_placeholder": "مثال: EID-784-XXXX أو رقم الجواز",
+
+  "employees_status": "الحالة",
+  "employees_payment_status": "حالة الدفع",
+  "employees_status_active": "نشط",
+  "employees_status_inactive": "غير نشط",
+  "employees_status_terminated": "منتهي الخدمة",
+
+  "employees_pay_paid": "مدفوع",
+  "employees_pay_not_paid": "غير مدفوع",
+  "employees_pay_failed": "فشل الدفع",
+
+    "salary_title": "دفع الرواتب",
+  "salary_subtitle": "إدارة ومعالجة مدفوعات رواتب الموظفين.",
+
+  "salary_tab_details": "تفاصيل دفع الرواتب",
+  "salary_tab_send": "إرسال القائمة",
+  "salary_tab_action": "إجراء دفع الرواتب",
+
+  "salary_table1_name": "الاسم",
+  "salary_table1_eid": "رقم الهوية / الجواز",
+  "salary_table1_last_payment": "آخر عملية دفع",
+  "salary_table1_salary_amount": "قيمة الراتب (درهم)",
+  "salary_table1_select": "اختيار للدفع",
+  "salary_table1_action": "إجراء",
+
+  "salary_edit_amount": "تعديل المبلغ",
+
+  "salary_btn_go_payment": "الانتقال إلى الدفع",
+
+  "salary_error_select_employee": "يرجى اختيار موظف واحد على الأقل.",
+  "salary_info_proceed_list": "جاري الانتقال إلى قائمة الدفع...",
+
+  "salary_toast_update_success": "تم تحديث تفاصيل الراتب بنجاح!",
+  "salary_toast_send_list_success": "تم إرسال قائمة الرواتب إلى وزارة الموارد البشرية والتوطين بنجاح!",
+  "salary_toast_send_notification_success": "تم إرسال إشعار دفع الرواتب بنجاح!",
+
+  "salary_send_title": "تفاصيل دفع الرواتب للشركة",
+  "salary_send_desc": "اختر تاريخ الدفع ثم أرسل لإنشاء القائمة.",
+  "salary_send_payment_date": "تاريخ الدفع",
+
+  "salary_send_table_name": "الاسم",
+  "salary_send_table_eid": "رقم الهوية / الجواز",
+  "salary_send_table_salary_amount": "قيمة الراتب",
+  "salary_send_table_payment_date": "تاريخ الدفع",
+
+  "salary_btn_send_list_mohre": "إرسال القائمة إلى وزارة الموارد البشرية",
+  "salary_send_sending": "جاري الإرسال...",
+
+  "salary_action_hint": "بعد إرسال القائمة بنجاح واستلام إشعار القبول، يتم تفعيل هذه الصفحة.",
+
+  "salary_action_table_name": "الاسم",
+  "salary_action_table_eid": "رقم الهوية / الجواز",
+  "salary_action_table_salary_amount": "قيمة الراتب",
+  "salary_action_table_payment_date": "تاريخ الدفع",
+
+  "salary_action_export_file": "تصدير ملف الرواتب",
+  "salary_action_send_bulk": "إرسال تفاصيل الدفع دفعة واحدة إلى الوزارة",
+  "salary_action_send_notification": "إرسال إشعار دفع الرواتب إلى الوزارة",
+
+  "salary_edit_title": "تعديل الراتب للموظف {{name}}",
+  "salary_edit_leaves": "الإجازات",
+  "salary_edit_days_paid": "الأيام المدفوعة",
+  "salary_edit_allowance": "البدلات",
+  "salary_edit_refund": "مبلغ الاسترداد",
+  "salary_edit_final": "المبلغ النهائي",
+
+  "salary_summary_title": "تأكيد إشعار دفع الرواتب",
+  "salary_summary_total_employees": "إجمالي عدد الموظفين:",
+  "salary_summary_total_amount": "إجمالي المبلغ:",
+  "salary_summary_success_no": "عدد العمليات الناجحة:",
+  "salary_summary_failed_no": "عدد العمليات الفاشلة:",
+  "salary_summary_success_amount": "مجموع المبالغ الناجحة:",
+  "salary_summary_failed_amount": "مجموع المبالغ الفاشلة:",
+  "salary_summary_verify_text": "يرجى التأكد من صحة جميع البيانات.",
+  "salary_summary_btn_submit": "إرسال",
+  "salary_summary_btn_sending": "جاري الإرسال...",
+
+  "submit": "إرسال",
+
+
+
+  "employees_required_fields": "يرجى تعبئة جميع الحقول المطلوبة.",
+  "employees_added_success": "تم إضافة الموظف بنجاح.",
+  "employees_removed": "تم حذف الموظف.",
+  "employees_marked_paid": "تم التعريف كمدفوع.",
+  "employees_suspended": "تم وضع الموظف كغير نشط.",
+
+"refund_title": "إدارة استرداد الرواتب",
+  "refund_subtitle": "تقديم وتتبع طلبات استرداد الرواتب في حال وجود مشكلات.",
+
+  "refund_tab_request": "طلب استرداد",
+  "refund_tab_status": "حالة الاسترداد",
+
+  "refund_request_title": "طلب استرداد",
+  "refund_btn_request": "طلب استرداد",
+
+  "refund_table_name": "الاسم",
+  "refund_table_eid": "رقم الهوية / الجواز",
+  "refund_table_salary": "مبلغ الراتب",
+  "refund_table_payment_date": "تاريخ الدفع",
+  "refund_table_request_date": "تاريخ طلب الاسترداد",
+  "refund_table_status": "الحالة",
+  "refund_table_desc": "الوصف",
+
+  "refund_status_title": "حالة الاسترداد",
+  "refund_status_all": "جميع الحالات",
+  "refund_status_done": "تم",
+  "refund_status_failed": "فشل",
+
+  "refund_search_placeholder": "بحث بالاسم أو رقم الهوية...",
+  "refund_filter_payment_date": "تاريخ الدفع",
+  "refund_filters_reset": "إعادة التصفية",
+
+  "refund_no_records": "لا توجد سجلات.",
+  "refund_showing": "عرض",
+  "refund_of": "من",
+  "refund_records": "سجل",
+
+  "refund_confirm_selected": "تأكيد الموظفين المحددين",
+  "refund_selected_desc": "سيتم تضمين الموظفين التاليين في طلب الاسترداد:",
+
+  "refund_salary": "الراتب",
+  "refund_payment_date": "تاريخ الدفع",
+  "refund_final_amount": "المبلغ النهائي",
+
+  "refund_continue": "متابعة",
+
+  "refund_final_title": "هل أنت متأكد؟",
+  "refund_final_desc": "هل ترغب في إرسال طلب الاسترداد للموظفين المحددين؟",
+
+  "refund_submitted": "تم إرسال طلب الاسترداد بنجاح.",
+  "refund_yes_submit": "نعم، إرسال",
+
+  "reports_title": "التقارير",
+  "reports_subtitle": "عرض سجل الدفعات التفصيلي لكل شركة مسجّلة.",
+
+  "reports_employees": "موظف",
+  "reports_last3months": "دفع الرواتب (آخر 3 أشهر)",
+  "reports_total_paid": "إجمالي المدفوع",
+  "reports_details": "التفاصيل",
+
+  "reports_employee": "الموظف",
+  "reports_amount": "المبلغ",
+  "reports_date": "التاريخ",
+
+  "register_title": "تسجيل / إلغاء التسجيل في نظام حماية الأجور WPS",
+  "register_tab_register": "تسجيل",
+  "register_tab_deregister": "إلغاء التسجيل",
+
+  "register_type_sponsor": "كفيل منزلي",
+  "register_type_company": "شركة",
+
+  "register_companies_list": "قائمة الشركات",
+  "register_select_company": "اختر الشركة...",
+  "register_company_registered": "مسجّل مسبقًا",
+  "register_company_not_registered": "غير مسجّل",
+
+  "register_trade_license": "الرخصة التجارية",
+  "register_trade_license_placeholder": "أدخل رقم الرخصة التجارية",
+
+  "register_license_place": "مكان إصدار الرخصة",
+  "register_license_place_placeholder": "أدخل مكان إصدار الرخصة",
+
+  "register_info1": "معلومة 1",
+  "register_info2": "معلومة 2",
+  "register_info3": "معلومة 3",
+
+  "register_info_placeholder": "أدخل المعلومة",
+
+  "register_bank_selection": "اختيار البنك",
+  "register_select_bank": "اختر البنك...",
+
+  "register_upload_document": "رفع المستند",
+  "register_upload_choose": "اختر ملفًا",
+  "register_no_file": "لم يتم اختيار ملف",
+
+  "register_submit": "إرسال",
+  "register_reset": "مسح",
+
+  "register_error_type": "يرجى اختيار نوع التسجيل أولاً.",
+  "register_error_company": "يرجى اختيار شركة.",
+  "register_success_submitted": "تم إرسال النموذج بنجاح.",
+  "register_success_reset": "تم مسح البيانات.",
+
+  "deregister_title": "طلب إلغاء التسجيل من نظام حماية الأجور لدى بنك BSI",
+
+  "deregister_confirm_text": "أقرّ بموجب هذا أنني تقدّمت بطلب إلغاء التسجيل من",
+  "deregister_confirm_strong": "نظام حماية الأجور (WPS) لدى بنك BSI.",
+
+  "deregister_submit": "إرسال الطلب",
+  "deregister_error_confirm": "يرجى التأكيد قبل الإرسال.",
+  "deregister_success": "تم تقديم طلب إلغاء التسجيل بنجاح."
+
+
+}
+

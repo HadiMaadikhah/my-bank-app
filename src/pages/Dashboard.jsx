@@ -1,20 +1,21 @@
-import { useState, useMemo } from "react"
-import { useNavigate } from "react-router-dom"
-import { toast } from "sonner"
+import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import {
   PieChart,
   Pie,
   Cell,
-  Legend,
-  Tooltip,
   ResponsiveContainer,
-} from "recharts"
-import { CheckCircle2, RefreshCw, Save } from "lucide-react"
+} from "recharts";
+import { CheckCircle2, RefreshCw, Save } from "lucide-react";
 
 export default function Dashboard() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
 
-  // ---------- Demo Data ----------
+  // ---------- Demo Data (Not Translated) ----------
   const demoProfiles = useMemo(
     () => ({
       Personal: [
@@ -81,76 +82,98 @@ export default function Dashboard() {
       ],
     }),
     []
-  )
+  );
 
-  const [activeProfile, setActiveProfile] = useState("Personal")
-  const [selectedAccountId, setSelectedAccountId] = useState(null)
+  const [activeProfile, setActiveProfile] = useState("Personal");
+  const [selectedAccountId, setSelectedAccountId] = useState(null);
 
-  const accounts = demoProfiles[activeProfile]
-  const selectedAccount = accounts.find((a) => a.id === selectedAccountId) || null
+  const accounts = demoProfiles[activeProfile];
+  const selectedAccount = accounts.find((a) => a.id === selectedAccountId) || null;
 
-  const handleSetAsSalary = () => toast.success("Salary account updated successfully.")
-  const handleRefreshTx = () => toast.info("Refreshing transactions...")
-  const handleSaveChanges = () => toast.success("Changes saved successfully.")
+  const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0);
 
-  const COLORS = ["#2E3092", "#4C51BF", "#A3A8F0", "#CBD5E0"]
-  const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0)
   const chartData = accounts.map((acc) => ({
     name: acc.name,
     value: parseFloat(((acc.balance / totalBalance) * 100).toFixed(1)),
-  }))
+  }));
+
+  const COLORS = ["#2E3092", "#4C51BF", "#A3A8F0", "#CBD5E0"];
+
+  const handleSetAsSalary = () => toast.success(t("set_salary_success"));
+  const handleRefreshTx = () => toast.info(t("refresh_msg"));
+  const handleSaveChanges = () => toast.success(t("save_msg"));
 
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen">
-      <main className="p-4 md:p-8 overflow-y-auto transition-all duration-300">
-        {/* ✅ فقط عنوان در موبایل نمایش داده شود، بدون آیکن منو */}
-        <div className="flex items-center justify-center mb-6 md:hidden">
-          <h1 className="text-xl font-bold text-[#2E3092]">Banking</h1>
-        </div>
+      <main className={`p-4 md:p-8 ${isArabic ? "text-right" : "text-left"}`}>
 
-        {/* دسکتاپ */}
-        <h1 className="hidden md:block text-2xl font-bold text-[#2E3092] mb-6">
-          Banking
+        {/* Title */}
+        <h1 className="text-2xl font-bold text-[#2E3092] mb-6">
+          {t("dashboard_title")}
         </h1>
 
-        {/* Chart Section */}
+        {/* Donut Chart Section */}
         <section className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-8">
           <h2 className="text-lg font-semibold text-[#2E3092] mb-4">
-            Account Balance Distribution
+            {t("balance_distribution")}
           </h2>
-          <div className="w-full h-64">
-            <ResponsiveContainer>
-              <PieChart>
-                <Pie
-                  data={chartData}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={90}
-                  label={({ name, value }) => `${name}: ${value}%`}
+
+          <div className={`flex flex-col md:flex-row items-center justify-between gap-6 ${isArabic ? "flex-row-reverse" : ""}`}>
+            
+            {/* Donut Chart */}
+            <div className="w-full md:w-1/2 h-64">
+              <ResponsiveContainer>
+                <PieChart>
+                  <Pie
+                    data={chartData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={90}
+                    paddingAngle={4}
+                    dataKey="value"
+                  >
+                    {chartData.map((entry, index) => (
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Custom Legend */}
+            <div className="w-full md:w-1/2 flex flex-col gap-3">
+              {chartData.map((entry, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center gap-3 ${isArabic ? "flex-row-reverse" : ""}`}
                 >
-                  {chartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
+                  <span
+                    className="w-4 h-4 rounded-full block"
+                    style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                  ></span>
+
+                  <span className="text-sm font-medium text-gray-700">
+                    {entry.name}: {entry.value}%
+                  </span>
+                </div>
+              ))}
+            </div>
+
           </div>
         </section>
 
         {/* Profiles */}
         <section className="mb-6">
-          <h2 className="text-lg font-semibold text-[#2E3092] mb-2">Profiles</h2>
-          <div className="flex flex-wrap gap-2">
+          <h2 className="text-lg font-semibold text-[#2E3092] mb-2">{t("profiles")}</h2>
+
+          <div className={`flex flex-wrap gap-2 ${isArabic ? "justify-end" : ""}`}>
             {Object.keys(demoProfiles).map((p) => (
               <button
                 key={p}
                 onClick={() => {
-                  setActiveProfile(p)
-                  setSelectedAccountId(null)
+                  setActiveProfile(p);
+                  setSelectedAccountId(null);
                 }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                   activeProfile === p
@@ -158,18 +181,17 @@ export default function Dashboard() {
                     : "bg-white border border-[#2E3092]/35 text-[#2E3092] hover:bg-[#2E3092]/10"
                 }`}
               >
-                {p} Profile
+                {t(`profile_${p.toLowerCase()}`)}
               </button>
             ))}
           </div>
         </section>
 
-        {/* Accounts & Transactions */}
+        {/* Accounts */}
         <section className="space-y-8">
           <div>
-            <h2 className="text-lg font-semibold text-[#2E3092] mb-3">
-              {activeProfile} Accounts
-            </h2>
+            <h2 className="text-lg font-semibold text-[#2E3092] mb-3">{t("accounts")}</h2>
+
             <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
               {accounts.map((acc) => (
                 <div
@@ -184,12 +206,12 @@ export default function Dashboard() {
                   <div className="flex items-center justify-between">
                     <h3 className="text-[#2E3092] font-semibold">{acc.name}</h3>
                     {acc.salary && (
-                      <CheckCircle2 className="text-green-500" title="Salary Account" />
+                      <CheckCircle2 className="text-green-500" title={t("salary_account")} />
                     )}
                   </div>
                   <p className="text-sm text-gray-600 mt-1">{acc.number}</p>
                   <p className="text-sm font-medium text-gray-800 mt-1">
-                    Balance:{" "}
+                    {t("balance")}{" "}
                     <span className="text-[#2E3092]">
                       AED {acc.balance.toLocaleString()}
                     </span>
@@ -199,44 +221,48 @@ export default function Dashboard() {
             </div>
           </div>
 
+          {/* Transactions */}
           {selectedAccount && (
             <div>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-3">
+              <div className={`flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-3`}>
                 <h2 className="text-xl font-semibold text-[#2E3092]">
-                  Last 5 Transactions — {selectedAccount.name}
+                  {t("last_transactions")} — {selectedAccount.name}
                 </h2>
+
                 <div className="flex flex-wrap gap-2">
                   <button
                     onClick={handleSetAsSalary}
                     className="inline-flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-3 py-2 rounded-md text-sm transition"
                   >
                     <CheckCircle2 size={16} />
-                    Set as Salary
+                    {t("set_salary")}
                   </button>
+
                   <button
                     onClick={handleRefreshTx}
                     className="inline-flex items-center gap-2 bg-white border border-[#2E3092]/40 text-[#2E3092] hover:bg-[#2E3092]/5 px-3 py-2 rounded-md text-sm transition"
                   >
                     <RefreshCw size={16} />
-                    Refresh
+                    {t("refresh")}
                   </button>
+
                   <button
                     onClick={handleSaveChanges}
                     className="inline-flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-3 py-2 rounded-md text-sm transition"
                   >
                     <Save size={16} />
-                    Save
+                    {t("save")}
                   </button>
                 </div>
               </div>
 
               <div className="bg-white rounded-xl shadow border border-gray-200 overflow-x-auto">
-                <table className="w-full text-sm min-w-[500px]">
+                <table className={`w-full text-sm min-w-[500px] ${isArabic ? "text-right" : "text-left"}`}>
                   <thead className="bg-[#2E3092] text-white">
                     <tr>
-                      <th className="py-3 px-4 text-left">Date</th>
-                      <th className="py-3 px-4 text-left">Type</th>
-                      <th className="py-3 px-4 text-left">Amount</th>
+                      <th className="py-3 px-4">{t("date")}</th>
+                      <th className="py-3 px-4">{t("type")}</th>
+                      <th className="py-3 px-4">{t("amount")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -258,10 +284,12 @@ export default function Dashboard() {
                   </tbody>
                 </table>
               </div>
+
             </div>
           )}
         </section>
+
       </main>
     </div>
-  )
+  );
 }

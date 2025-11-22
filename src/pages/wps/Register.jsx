@@ -9,8 +9,11 @@ import {
   CheckSquare,
 } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 export default function Register() {
+  const { t } = useTranslation();
+
   const [activeTab, setActiveTab] = useState("register");
   const [registerType, setRegisterType] = useState(""); // "company" or "sponsor"
   const [selectedCompany, setSelectedCompany] = useState("");
@@ -48,11 +51,10 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!registerType)
-      return toast.error("Please select a registration type first.");
+    if (!registerType) return toast.error(t("register_error_type"));
     if (registerType === "company" && !selectedCompany)
-      return toast.error("Please select a company.");
-    toast.success("Form submitted successfully!");
+      return toast.error(t("register_error_company"));
+    toast.success(t("register_success_submitted"));
   };
 
   const handleReset = () => {
@@ -67,17 +69,17 @@ export default function Register() {
       info3: "",
       bankSelection: "",
     });
-    toast.info("Form cleared.");
+    toast.info(t("register_success_reset"));
   };
-
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6 md:p-10">
       <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
+
         {/* Header */}
         <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-[#f7f8ff] to-[#e8eaff]">
           <Building2 className="text-[#2E3092]" size={24} />
           <h2 className="text-xl sm:text-2xl font-semibold text-[#2E3092]">
-            WPS Register / Deregister
+            {t("register_title")}
           </h2>
         </div>
 
@@ -91,8 +93,9 @@ export default function Register() {
                 : "text-gray-600 hover:bg-gray-50"
             }`}
           >
-            Register
+            {t("register_tab_register")}
           </button>
+
           <button
             onClick={() => setActiveTab("deregister")}
             className={`flex-1 py-3 text-sm sm:text-base font-medium transition-all ${
@@ -101,13 +104,13 @@ export default function Register() {
                 : "text-gray-600 hover:bg-gray-50"
             }`}
           >
-            Deregister
+            {t("register_tab_deregister")}
           </button>
         </div>
-
         {/* Register Tab */}
         {activeTab === "register" && (
           <div className="p-6 sm:p-8 space-y-6">
+
             {/* Registration Type */}
             <div className="flex items-center gap-8">
               <label className="flex items-center gap-2 text-sm sm:text-base text-gray-700 font-medium cursor-pointer">
@@ -123,7 +126,7 @@ export default function Register() {
                   }}
                   className="w-4 h-4 text-[#2E3092] border-gray-300 focus:ring-[#2E3092]"
                 />
-                Domestic Sponsor
+                {t("register_type_sponsor")}
               </label>
 
               <label className="flex items-center gap-2 text-sm sm:text-base text-gray-700 font-medium cursor-pointer">
@@ -135,15 +138,16 @@ export default function Register() {
                   onChange={(e) => setRegisterType(e.target.value)}
                   className="w-4 h-4 text-[#2E3092] border-gray-300 focus:ring-[#2E3092]"
                 />
-                Company
+                {t("register_type_company")}
               </label>
             </div>
 
-            {/* Company Select (Active only if company selected) */}
+            {/* Company Select */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                List of Companies
+                {t("register_companies_list")}
               </label>
+
               <select
                 value={selectedCompany}
                 onChange={handleSelectCompany}
@@ -154,7 +158,7 @@ export default function Register() {
                     : "bg-gray-100 cursor-not-allowed border-gray-200"
                 }`}
               >
-                <option value="">Select company...</option>
+                <option value="">{t("register_select_company")}</option>
                 {companies.map((c) => (
                   <option key={c.name} value={c.name}>
                     {c.name}
@@ -171,41 +175,43 @@ export default function Register() {
                 }`}
               >
                 <span>
-                  {isRegistered ? "Already REGISTERED!" : "NOT REGISTERED!"}
+                  {isRegistered
+                    ? t("register_company_registered")
+                    : t("register_company_not_registered")}
                 </span>
                 <AlertCircle size={20} />
               </div>
             )}
-
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Trade License + License Place */}
+
+              {/* Trade License & Place */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Trade License
+                    {t("register_trade_license")}
                   </label>
                   <input
                     type="text"
                     name="tradeLicense"
                     value={formData.tradeLicense}
                     onChange={handleChange}
-                    placeholder="Enter trade license number"
-                    className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2E3092]/50"
+                    placeholder={t("register_trade_license_placeholder")}
+                    className="w-full border rounded-md px-3 py-2 text-sm focus:ring-[#2E3092]/50"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    License Place
+                    {t("register_license_place")}
                   </label>
                   <input
                     type="text"
                     name="licensePlace"
                     value={formData.licensePlace}
                     onChange={handleChange}
-                    placeholder="Enter license place"
-                    className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2E3092]/50"
+                    placeholder={t("register_license_place_placeholder")}
+                    className="w-full border rounded-md px-3 py-2 text-sm focus:ring-[#2E3092]/50"
                   />
                 </div>
               </div>
@@ -214,16 +220,17 @@ export default function Register() {
               <div className="grid sm:grid-cols-3 gap-4">
                 {["info1", "info2", "info3"].map((info) => (
                   <div key={info}>
-                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
-                      {info.replace("info", "Info ")}
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {t(`register_${info}`)}
                     </label>
+
                     <input
                       type="text"
                       name={info}
                       value={formData[info]}
                       onChange={handleChange}
-                      placeholder={`Enter ${info.replace("info", "Info ")}`}
-                      className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2E3092]/50"
+                      placeholder={t("register_info_placeholder")}
+                      className="w-full border rounded-md px-3 py-2 text-sm focus:ring-[#2E3092]/50"
                     />
                   </div>
                 ))}
@@ -232,15 +239,16 @@ export default function Register() {
               {/* Bank Selection */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Bank Selection
+                  {t("register_bank_selection")}
                 </label>
+
                 <select
                   name="bankSelection"
                   value={formData.bankSelection}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2E3092]/50 bg-white"
+                  className="w-full border px-3 py-2 rounded-md text-sm focus:ring-[#2E3092]/50 bg-white"
                 >
-                  <option value="">Select Bank...</option>
+                  <option value="">{t("register_select_bank")}</option>
                   {banks.map((b) => (
                     <option key={b} value={b}>
                       {b}
@@ -252,15 +260,19 @@ export default function Register() {
               {/* Upload */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Upload Document
+                  {t("register_upload_document")}
                 </label>
+
                 <div className="flex items-center gap-3">
-                  <label className="flex items-center gap-2 px-4 py-2 bg-[#2E3092] hover:bg-[#23246e] text-white text-sm font-medium rounded-md cursor-pointer transition">
+                  <label className="flex items-center gap-2 px-4 py-2 bg-[#2E3092] hover:bg-[#23246e] text-white text-sm rounded-md cursor-pointer">
                     <Upload size={16} />
-                    Choose File
+                    {t("register_upload_choose")}
                     <input type="file" className="hidden" />
                   </label>
-                  <span className="text-sm text-gray-500">No file chosen</span>
+
+                  <span className="text-sm text-gray-500">
+                    {t("register_no_file")}
+                  </span>
                 </div>
               </div>
 
@@ -268,67 +280,67 @@ export default function Register() {
               <div className="flex flex-wrap gap-3 pt-2">
                 <button
                   type="submit"
-                  className="flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white text-sm font-medium px-5 py-2 rounded-md transition"
+                  className="flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-5 py-2 rounded-md text-sm"
                 >
                   <Save size={16} />
-                  Submit
+                  {t("register_submit")}
                 </button>
+
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium px-5 py-2 rounded-md transition"
+                  className="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-gray-700 px-5 py-2 rounded-md text-sm"
                 >
                   <RotateCcw size={16} />
-                  Reset
+                  {t("register_reset")}
                 </button>
               </div>
             </form>
           </div>
         )}
-
         {/* Deregister Tab */}
         {activeTab === "deregister" && (
           <div className="p-8 flex flex-col items-center justify-center text-center space-y-6">
+
             <h3 className="text-lg sm:text-xl font-semibold text-[#2E3092]">
-              Request to Deregister from BSI For WPS Payment
+              {t("deregister_title")}
             </h3>
 
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                if (!agree) {
-                  toast.error("Please confirm before submitting.");
-                  return;
-                }
-                toast.success("Deregistration request submitted.");
+                if (!agree) return toast.error(t("deregister_error_confirm"));
+                toast.success(t("deregister_success"));
               }}
               className="w-full max-w-md space-y-5"
             >
-              <div className="flex items-start gap-3 text-sm text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <div className="flex items-start gap-3 text-sm bg-gray-50 p-4 rounded-lg border">
                 <input
                   type="checkbox"
                   id="confirm"
                   checked={agree}
                   onChange={(e) => setAgree(e.target.checked)}
-                  className="mt-1 w-4 h-4 text-[#2E3092] border-gray-300 rounded focus:ring-[#2E3092]"
+                  className="mt-1 w-4 h-4 text-[#2E3092]"
                 />
+
                 <label htmlFor="confirm" className="text-left leading-snug">
-                  I hereby confirm that I have requested to deregister from
+                  {t("deregister_confirm_text")}
                   <br />
-                  <strong>WPS payment by BSI.</strong>
+                  <strong>{t("deregister_confirm_strong")}</strong>
                 </label>
               </div>
 
               <button
                 type="submit"
-                className="flex items-center justify-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-6 py-2.5 rounded-md text-sm font-medium transition"
+                className="flex items-center justify-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-6 py-2.5 rounded-md text-sm"
               >
                 <CheckSquare size={16} />
-                Submit
+                {t("deregister_submit")}
               </button>
             </form>
           </div>
         )}
+
       </div>
     </div>
   );

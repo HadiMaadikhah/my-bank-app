@@ -1,10 +1,6 @@
 import { useState } from "react";
-import {
-  RefreshCw,
-  ChevronDown,
-  ChevronUp,
-  Info,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, Info } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const companies = [
   {
@@ -12,30 +8,18 @@ const companies = [
     name: "BlueWave Technologies FZCO",
     employees: 8,
     salaryHistory: [
-      {
-        month: "August 2025",
-        totalPaid: 62000,
-        details: [
-          { id: 1, name: "Michael Torres", amount: 8500, date: "Aug 28, 2025" },
-          { id: 2, name: "Sara Nguyen", amount: 7800, date: "Aug 28, 2025" },
-        ],
-      },
-      {
-        month: "September 2025",
-        totalPaid: 64800,
-        details: [
-          { id: 1, name: "Daniel Kim", amount: 6200, date: "Sep 27, 2025" },
-          { id: 2, name: "Liam Patel", amount: 9800, date: "Sep 27, 2025" },
-        ],
-      },
-      {
-        month: "October 2025",
-        totalPaid: 66700,
-        details: [
-          { id: 1, name: "Emma Brooks", amount: 8700, date: "Oct 28, 2025" },
-          { id: 2, name: "Olivia Park", amount: 9100, date: "Oct 28, 2025" },
-        ],
-      },
+      { month: "August 2025", totalPaid: 62000, details: [
+        { id: 1, name: "Michael Torres", amount: 8500, date: "Aug 28, 2025" },
+        { id: 2, name: "Sara Nguyen", amount: 7800, date: "Aug 28, 2025" },
+      ]},
+      { month: "September 2025", totalPaid: 64800, details: [
+        { id: 1, name: "Daniel Kim", amount: 6200, date: "Sep 27, 2025" },
+        { id: 2, name: "Liam Patel", amount: 9800, date: "Sep 27, 2025" },
+      ]},
+      { month: "October 2025", totalPaid: 66700, details: [
+        { id: 1, name: "Emma Brooks", amount: 8700, date: "Oct 28, 2025" },
+        { id: 2, name: "Olivia Park", amount: 9100, date: "Oct 28, 2025" },
+      ]},
     ],
   },
   {
@@ -43,72 +27,37 @@ const companies = [
     name: "Astra Logistics & Shipping",
     employees: 9,
     salaryHistory: [
-      {
-        month: "August 2025",
-        totalPaid: 54300,
-        details: [
-          { id: 1, name: "Lucas Bennett", amount: 9400, date: "Aug 29, 2025" },
-          { id: 2, name: "Mia Gonzalez", amount: 6600, date: "Aug 29, 2025" },
-        ],
-      },
-      {
-        month: "September 2025",
-        totalPaid: 55900,
-        details: [
-          { id: 1, name: "David Chen", amount: 7200, date: "Sep 27, 2025" },
-          { id: 2, name: "Sophie Klein", amount: 5900, date: "Sep 27, 2025" },
-        ],
-      },
-      {
-        month: "October 2025",
-        totalPaid: 57500,
-        details: [
-          { id: 1, name: "Ethan Johnson", amount: 6100, date: "Oct 26, 2025" },
-          { id: 2, name: "Aria Wilson", amount: 5200, date: "Oct 26, 2025" },
-        ],
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Falcon Energy Systems LLC",
-    employees: 11,
-    salaryHistory: [
-      {
-        month: "August 2025",
-        totalPaid: 61000,
-        details: [
-          { id: 1, name: "Grace Lee", amount: 7800, date: "Aug 25, 2025" },
-          { id: 2, name: "Jack Taylor", amount: 8100, date: "Aug 25, 2025" },
-        ],
-      },
-      {
-        month: "September 2025",
-        totalPaid: 62500,
-        details: [
-          { id: 1, name: "Sophia Adams", amount: 7000, date: "Sep 26, 2025" },
-          { id: 2, name: "Henry Davis", amount: 8900, date: "Sep 26, 2025" },
-        ],
-      },
-      {
-        month: "October 2025",
-        totalPaid: 64000,
-        details: [
-          { id: 1, name: "Ava Martinez", amount: 7400, date: "Oct 28, 2025" },
-          { id: 2, name: "William Scott", amount: 6700, date: "Oct 28, 2025" },
-        ],
-      },
+      { month: "August 2025", totalPaid: 54300, details: [
+        { id: 1, name: "Lucas Bennett", amount: 9400, date: "Aug 29, 2025" },
+        { id: 2, name: "Mia Gonzalez", amount: 6600, date: "Aug 29, 2025" },
+      ]},
+      { month: "September 2025", totalPaid: 55900, details: [
+        { id: 1, name: "David Chen", amount: 7200, date: "Sep 27, 2025" },
+        { id: 2, name: "Sophie Klein", amount: 5900, date: "Sep 27, 2025" },
+      ]},
+      { month: "October 2025", totalPaid: 57500, details: [
+        { id: 1, name: "Ethan Johnson", amount: 6100, date: "Oct 26, 2025" },
+        { id: 2, name: "Aria Wilson", amount: 5200, date: "Oct 26, 2025" },
+      ]},
     ],
   },
 ];
 
-export default function WpsPage() {
+export default function Reports() {
+  const { t } = useTranslation();
   const [openCompany, setOpenCompany] = useState(null);
   const [openMonth, setOpenMonth] = useState(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 p-6 sm:p-10">
-      
+
+      {/* Title */}
+      <div>
+        <h1 className="text-2xl font-semibold text-[#2E3092]">
+          {t("reports_title")}
+        </h1>
+        <p className="text-gray-600 mt-1">{t("reports_subtitle")}</p>
+      </div>
 
       {/* --- Company List --- */}
       <div className="space-y-5 mt-8">
@@ -133,7 +82,7 @@ export default function WpsPage() {
                     {company.name}
                   </h2>
                   <p className="text-sm text-gray-500">
-                    {company.employees} Employees
+                    {company.employees} {t("reports_employees")}
                   </p>
                 </div>
                 {isOpen ? (
@@ -147,7 +96,7 @@ export default function WpsPage() {
               {isOpen && (
                 <div className="px-6 pb-6 pt-3 border-t border-gray-100 bg-gray-50/50">
                   <h3 className="text-sm font-semibold text-[#2E3092] mb-3">
-                    Salary Payments (Last 3 Months)
+                    {t("reports_last3months")}
                   </h3>
 
                   {company.salaryHistory.map((month, index) => {
@@ -164,13 +113,15 @@ export default function WpsPage() {
                           <span className="text-sm font-medium text-[#2E3092]">
                             {month.month}
                           </span>
+
                           <div className="flex items-center gap-3">
                             <span className="text-sm text-gray-600">
-                              Total Paid:{" "}
+                              {t("reports_total_paid")}:{" "}
                               <b className="text-[#2E3092]">
                                 AED {month.totalPaid.toLocaleString()}
                               </b>
                             </span>
+
                             <button
                               onClick={() =>
                                 setOpenMonth(
@@ -182,7 +133,7 @@ export default function WpsPage() {
                               className="flex items-center gap-1 text-sm text-[#2E3092] hover:underline"
                             >
                               <Info size={14} />
-                              Details
+                              {t("reports_details")}
                             </button>
                           </div>
                         </div>
@@ -193,9 +144,15 @@ export default function WpsPage() {
                             <table className="w-full text-sm mt-2 bg-white rounded-lg overflow-hidden border border-gray-200">
                               <thead className="bg-[#2E3092] text-white">
                                 <tr>
-                                  <th className="py-2 px-3 text-left">Employee</th>
-                                  <th className="py-2 px-3 text-left">Amount</th>
-                                  <th className="py-2 px-3 text-left">Date</th>
+                                  <th className="py-2 px-3 text-left">
+                                    {t("reports_employee")}
+                                  </th>
+                                  <th className="py-2 px-3 text-left">
+                                    {t("reports_amount")}
+                                  </th>
+                                  <th className="py-2 px-3 text-left">
+                                    {t("reports_date")}
+                                  </th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -226,6 +183,7 @@ export default function WpsPage() {
           );
         })}
       </div>
+
     </div>
   );
 }
