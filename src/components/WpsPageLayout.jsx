@@ -3,12 +3,13 @@ import { useTranslation } from "react-i18next";
 export default function WpsPageLayout({ title, subtitle, children }) {
   const { i18n, t } = useTranslation();
 
-  const isArabic = i18n.language === "ar";
+  // Arabic + Persian = RTL
+  const isRTL = i18n.language === "ar" || i18n.language === "fa";
 
   return (
     <div
       className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-6 ${
-        isArabic ? "text-right" : "text-left"
+        isRTL ? "text-right" : "text-left"
       }`}
     >
       {/* Header */}

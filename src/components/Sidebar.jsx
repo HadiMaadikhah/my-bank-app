@@ -13,13 +13,17 @@ import {
 export default function Sidebar({ onNavigate }) {
   const [openFacilities, setOpenFacilities] = useState(true);
   const [openWps, setOpenWps] = useState(true);
+
   const { t, i18n } = useTranslation();
 
-  const isArabic = i18n.language === "ar";
+  // --------------------------
+  //  RTL detection (AR + FA)
+  // --------------------------
+  const isRTL = i18n.language === "ar" || i18n.language === "fa";
 
   const linkClass = ({ isActive }) =>
     `flex items-center ${
-      isArabic ? "flex-row-reverse" : "flex-row"
+      isRTL ? "flex-row-reverse" : "flex-row"
     } gap-3 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300
      ${
        isActive
@@ -31,13 +35,15 @@ export default function Sidebar({ onNavigate }) {
     <aside
       className={`flex flex-col w-64 bg-gradient-to-b from-[#f9faff]/90 via-[#eef0ff]/85 to-[#e3e6ff]/85 
         text-[#1c1f4a] h-full shadow-xl border-r border-[#cfd2ff]/70 
-        backdrop-blur-md transition-all duration-300 ${isArabic ? "text-right" : "text-left"}`}
+        backdrop-blur-md transition-all duration-300 ${
+          isRTL ? "text-right" : "text-left"
+        }`}
     >
       {/* Header */}
       <div className="p-5 text-center border-b border-[#d6d9ff]/50 bg-white/70 backdrop-blur-lg shadow-sm">
         <div
           className={`flex items-center justify-center gap-2 ${
-            isArabic ? "flex-row-reverse" : "flex-row"
+            isRTL ? "flex-row-reverse" : "flex-row"
           }`}
         >
           <Building2 size={22} className="text-[#2E3092]" />
@@ -50,11 +56,10 @@ export default function Sidebar({ onNavigate }) {
 
       {/* Menu */}
       <nav className="flex-1 mt-4 space-y-2 px-3 overflow-y-auto custom-scroll">
-
         {/* Dashboard */}
         <NavLink to="/dashboard" className={linkClass} onClick={onNavigate}>
-          <LayoutDashboard size={18} className={`${isArabic ? "order-2" : "order-none"}`} />
-          <span className={`${isArabic ? "order-1" : "order-none"}`}>
+          <LayoutDashboard size={18} className={`${isRTL ? "order-2" : ""}`} />
+          <span className={`${isRTL ? "order-1" : ""}`}>
             {t("dashboard_title")}
           </span>
         </NavLink>
@@ -63,21 +68,20 @@ export default function Sidebar({ onNavigate }) {
         <div className="mt-2">
           <button
             onClick={() => setOpenFacilities(!openFacilities)}
-            className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium 
-              text-[#1c1f4a]/90 hover:bg-white/70 transition-all`}
+            className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium 
+              text-[#1c1f4a]/90 hover:bg-white/70 transition-all"
           >
             <span
               className={`flex items-center gap-3 ${
-                isArabic ? "flex-row-reverse" : "flex-row"
+                isRTL ? "flex-row-reverse" : "flex-row"
               }`}
             >
-              <Building2 size={18} className={`${isArabic ? "order-2" : ""}`} />
-              <span className={`${isArabic ? "order-1" : ""}`}>
+              <Building2 size={18} className={`${isRTL ? "order-2" : ""}`} />
+              <span className={`${isRTL ? "order-1" : ""}`}>
                 {t("menu_facilities")}
               </span>
             </span>
 
-            {/* Arrow */}
             {openFacilities ? (
               <ChevronDown size={16} className="text-[#2E3092]" />
             ) : (
@@ -89,12 +93,11 @@ export default function Sidebar({ onNavigate }) {
           {openFacilities && (
             <div
               className={`mt-1 space-y-1 ${
-                isArabic
+                isRTL
                   ? "pr-5 border-r border-[#cfd3ff]/50"
                   : "pl-5 border-l border-[#cfd3ff]/50"
               }`}
             >
-
               {/* WPS */}
               <button
                 onClick={() => setOpenWps(!openWps)}
@@ -103,7 +106,7 @@ export default function Sidebar({ onNavigate }) {
               >
                 <span
                   className={`flex items-center gap-3 ${
-                    isArabic ? "flex-row-reverse" : ""
+                    isRTL ? "flex-row-reverse" : ""
                   }`}
                 >
                   {t("menu_wps_module")}
@@ -120,7 +123,7 @@ export default function Sidebar({ onNavigate }) {
               {openWps && (
                 <div
                   className={`mt-1 space-y-1 text-sm ${
-                    isArabic ? "pr-4" : "pl-4"
+                    isRTL ? "pr-4" : "pl-4"
                   }`}
                 >
                   {[
@@ -172,16 +175,16 @@ export default function Sidebar({ onNavigate }) {
 
         {/* REQUESTS */}
         <NavLink to="#" className={linkClass} onClick={onNavigate}>
-          <HandCoins size={18} className={`${isArabic ? "order-2" : ""}`} />
-          <span className={`${isArabic ? "order-1" : ""}`}>
+          <HandCoins size={18} className={`${isRTL ? "order-2" : ""}`} />
+          <span className={`${isRTL ? "order-1" : ""}`}>
             {t("menu_requests")}
           </span>
         </NavLink>
 
         {/* CUSTOMER SERVICES */}
         <NavLink to="#" className={linkClass} onClick={onNavigate}>
-          <Headphones size={18} className={`${isArabic ? "order-2" : ""}`} />
-          <span className={`${isArabic ? "order-1" : ""}`}>
+          <Headphones size={18} className={`${isRTL ? "order-2" : ""}`} />
+          <span className={`${isRTL ? "order-1" : ""}`}>
             {t("menu_customer_services")}
           </span>
         </NavLink>

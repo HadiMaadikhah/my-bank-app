@@ -13,7 +13,9 @@ import { CheckCircle2, RefreshCw, Save } from "lucide-react";
 export default function Dashboard() {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
+
+  // RTL for Arabic + Persian
+  const isRTL = i18n.language === "ar" || i18n.language === "fa";
 
   // ---------- Demo Data (Not Translated) ----------
   const demoProfiles = useMemo(
@@ -90,7 +92,7 @@ export default function Dashboard() {
   const accounts = demoProfiles[activeProfile];
   const selectedAccount = accounts.find((a) => a.id === selectedAccountId) || null;
 
-  const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0);
+  const totalBalance = accounts.reduce((s, a) => s + a.balance, 0);
 
   const chartData = accounts.map((acc) => ({
     name: acc.name,
@@ -105,22 +107,22 @@ export default function Dashboard() {
 
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen">
-      <main className={`p-4 md:p-8 ${isArabic ? "text-right" : "text-left"}`}>
+      <main className={`p-4 md:p-8 ${isRTL ? "text-right" : "text-left"}`}>
 
         {/* Title */}
         <h1 className="text-2xl font-bold text-[#2E3092] mb-6">
           {t("dashboard_title")}
         </h1>
 
-        {/* Donut Chart Section */}
+        {/* Donut Chart */}
         <section className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-8">
           <h2 className="text-lg font-semibold text-[#2E3092] mb-4">
             {t("balance_distribution")}
           </h2>
 
-          <div className={`flex flex-col md:flex-row items-center justify-between gap-6 ${isArabic ? "flex-row-reverse" : ""}`}>
-            
-            {/* Donut Chart */}
+          <div className={`flex flex-col md:flex-row items-center justify-between gap-6 ${isRTL ? "flex-row-reverse" : ""}`}>
+
+            {/* Chart */}
             <div className="w-full md:w-1/2 h-64">
               <ResponsiveContainer>
                 <PieChart>
@@ -133,26 +135,25 @@ export default function Dashboard() {
                     paddingAngle={4}
                     dataKey="value"
                   >
-                    {chartData.map((entry, index) => (
-                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    {chartData.map((_, i) => (
+                      <Cell key={i} fill={COLORS[i % COLORS.length]} />
                     ))}
                   </Pie>
                 </PieChart>
               </ResponsiveContainer>
             </div>
 
-            {/* Custom Legend */}
+            {/* Legend */}
             <div className="w-full md:w-1/2 flex flex-col gap-3">
-              {chartData.map((entry, index) => (
+              {chartData.map((entry, i) => (
                 <div
-                  key={index}
-                  className={`flex items-center gap-3 ${isArabic ? "flex-row-reverse" : ""}`}
+                  key={i}
+                  className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}
                 >
                   <span
                     className="w-4 h-4 rounded-full block"
-                    style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                    style={{ backgroundColor: COLORS[i % COLORS.length] }}
                   ></span>
-
                   <span className="text-sm font-medium text-gray-700">
                     {entry.name}: {entry.value}%
                   </span>
@@ -165,9 +166,11 @@ export default function Dashboard() {
 
         {/* Profiles */}
         <section className="mb-6">
-          <h2 className="text-lg font-semibold text-[#2E3092] mb-2">{t("profiles")}</h2>
+          <h2 className="text-lg font-semibold text-[#2E3092] mb-2">
+            {t("profiles")}
+          </h2>
 
-          <div className={`flex flex-wrap gap-2 ${isArabic ? "justify-end" : ""}`}>
+          <div className={`flex flex-wrap gap-2 ${isRTL ? "justify-end" : ""}`}>
             {Object.keys(demoProfiles).map((p) => (
               <button
                 key={p}
@@ -190,26 +193,32 @@ export default function Dashboard() {
         {/* Accounts */}
         <section className="space-y-8">
           <div>
-            <h2 className="text-lg font-semibold text-[#2E3092] mb-3">{t("accounts")}</h2>
+            <h2 className="text-lg font-semibold text-[#2E3092] mb-3">
+              {t("accounts")}
+            </h2>
 
             <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
               {accounts.map((acc) => (
                 <div
                   key={acc.id}
                   onClick={() => setSelectedAccountId(acc.id)}
-                  className={`border rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition cursor-pointer ${
-                    selectedAccountId === acc.id
-                      ? "border-[#2E3092] ring-2 ring-[#2E3092]/20"
-                      : "border-gray-200"
-                  }`}
+                  className={`border rounded-xl p-4 bg-white shadow-sm
+                    transition cursor-pointer hover:shadow-md
+                    ${
+                      selectedAccountId === acc.id
+                        ? "border-[#2E3092] ring-2 ring-[#2E3092]/20"
+                        : "border-gray-200"
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <h3 className="text-[#2E3092] font-semibold">{acc.name}</h3>
                     {acc.salary && (
-                      <CheckCircle2 className="text-green-500" title={t("salary_account")} />
+                      <CheckCircle2 className="text-green-500" />
                     )}
                   </div>
+
                   <p className="text-sm text-gray-600 mt-1">{acc.number}</p>
+
                   <p className="text-sm font-medium text-gray-800 mt-1">
                     {t("balance")}{" "}
                     <span className="text-[#2E3092]">
@@ -224,6 +233,7 @@ export default function Dashboard() {
           {/* Transactions */}
           {selectedAccount && (
             <div>
+
               <div className={`flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-3`}>
                 <h2 className="text-xl font-semibold text-[#2E3092]">
                   {t("last_transactions")} — {selectedAccount.name}
@@ -256,8 +266,9 @@ export default function Dashboard() {
                 </div>
               </div>
 
+              {/* Table */}
               <div className="bg-white rounded-xl shadow border border-gray-200 overflow-x-auto">
-                <table className={`w-full text-sm min-w-[500px] ${isArabic ? "text-right" : "text-left"}`}>
+                <table className={`w-full text-sm min-w-[500px] ${isRTL ? "text-right" : "text-left"}`}>
                   <thead className="bg-[#2E3092] text-white">
                     <tr>
                       <th className="py-3 px-4">{t("date")}</th>
@@ -265,9 +276,13 @@ export default function Dashboard() {
                       <th className="py-3 px-4">{t("amount")}</th>
                     </tr>
                   </thead>
+
                   <tbody>
                     {selectedAccount.transactions.map((tx) => (
-                      <tr key={tx.id} className="border-t hover:bg-gray-50 transition">
+                      <tr
+                        key={tx.id}
+                        className="border-t hover:bg-gray-50 transition"
+                      >
                         <td className="py-2 px-4">{tx.date}</td>
                         <td className="py-2 px-4">{tx.type}</td>
                         <td
@@ -287,6 +302,7 @@ export default function Dashboard() {
 
             </div>
           )}
+
         </section>
 
       </main>

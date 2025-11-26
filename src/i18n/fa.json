@@ -1,0 +1,340 @@
+{
+  "uae_pass": "ورود با UAE PASS",
+  "login_desc": "یک هویت دیجیتال قابل اعتماد برای تمام شهروندان، ساکنان و بازدیدکنندگان.",
+  "or": "یا",
+  "enter_mobile": "شماره موبایل خود را وارد کنید",
+  "send_otp": "ارسال کد",
+  "change_lang": "العربیة",
+
+  "otp_title": "کد تأیید را وارد کنید",
+  "otp_verifying": "در حال بررسی کد...",
+  "otp_resend": "ارسال مجدد کد",
+  "otp_resend_wait": "امکان ارسال مجدد تا",
+  "otp_verify": "تأیید و ورود",
+  "otp_change_mobile": "تغییر شماره موبایل",
+
+  "dashboard_title": "خدمات بانکی",
+  "balance_distribution": "توزیع موجودی حساب",
+  "profiles": "پروفایل‌ها",
+  "accounts": "حساب‌ها",
+  "last_transactions": " ۵ تراکنش آخر",
+  "date": "تاریخ",
+  "type": "نوع",
+  "amount": "مبلغ",
+  "set_salary": "تعیین به‌عنوان حقوق",
+  "refresh": "به‌روزرسانی",
+  "save": "ذخیره",
+  "profile_personal": "شخصی",
+  "profile_business": "شرکتی",
+  "profile_joint": "مشترک",
+
+  "header_bank": "بانک من",
+  "header_portal": "پرتال سازمانی",
+  "header_profile": "پروفایل",
+  "header_settings": "تنظیمات",
+  "header_logout": "خروج",
+
+  "menu_facilities": "تسهیلات",
+  "menu_wps_module": "ماژول WPS",
+  "menu_register": "ثبت‌نام / لغو ثبت‌نام",
+  "menu_companies": "شرکت‌ها",
+  "menu_employees": "کارکنان",
+  "menu_salary": "پرداخت حقوق",
+  "menu_refund": "بازپرداخت",
+  "menu_reports": "گزارش‌ها",
+  "menu_requests": "درخواست‌ها",
+  "menu_customer_services": "خدمات مشتری",
+  "menu_footer": "راه‌حل‌های نوآورانه حقوق و دستمزد",
+
+  "set_salary_success": "حساب حقوق با موفقیت به‌روزرسانی شد.",
+  "refresh_msg": "در حال به‌روزرسانی تراکنش‌ها...",
+  "save_msg": "تغییرات با موفقیت ذخیره شد.",
+
+  "companies_title": "شرکت‌ها",
+  "companies_subtitle": "مشاهده و مدیریت شرکت‌های ثبت‌شده.",
+
+  "companies_registered": "شرکت‌های ثبت‌شده",
+  "companies_manage_desc": "مدیریت پروفایل و جزئیات ثبت شرکت.",
+
+  "companies_add_btn": "افزودن شرکت",
+
+  "companies_table_name": "نام شرکت",
+  "companies_table_license": "شماره مجوز تجاری",
+  "companies_table_employees": "تعداد کارکنان",
+  "companies_table_status": "وضعیت",
+  "companies_table_actions": "عملیات",
+
+  "companies_status_active": "فعال",
+  "companies_status_inactive": "غیرفعال",
+
+  "companies_activate_title": "فعال‌سازی شرکت؟",
+  "companies_deactivate_title": "غیرفعال‌سازی شرکت؟",
+
+  "companies_activate": "فعال‌سازی",
+  "companies_deactivate": "غیرفعال‌سازی",
+
+  "companies_confirm_text": "آیا مطمئن هستید که می‌خواهید",
+
+  "companies_add_title": "افزودن شرکت جدید",
+  "companies_name": "نام شرکت",
+  "companies_name_placeholder": "نام شرکت را وارد کنید",
+
+  "companies_license": "شماره مجوز تجاری",
+
+  "companies_employees": "تعداد کارکنان",
+  "companies_employees_placeholder": "تعداد کارکنان را وارد کنید",
+
+  "companies_status": "وضعیت",
+
+  "companies_fill_all_fields": "لطفاً همه فیلدها را پر کنید.",
+
+  "edit": "ویرایش",
+  "delete": "حذف",
+  "cancel": "انصراف",
+
+  "employees_title": "کارکنان",
+  "employees_subtitle": "مدیریت اطلاعات کارکنان و سوابق پرداخت حقوق.",
+
+  "employees_tab_list": "فهرست کارکنان",
+  "employees_tab_payments": "وضعیت پرداخت کارکنان",
+
+  "employees_search_label": "جستجو (نام / شناسه / EID / شرکت)",
+  "employees_search_placeholder": "برای جستجو تایپ کنید...",
+
+  "employees_filter_status": "وضعیت",
+  "employees_filter_activity": "فعالیت",
+  "employees_filter_active24": "فعال در ۲۴ ماه گذشته",
+
+  "employees_add_btn": "افزودن کارمند",
+  "employees_showing": "نمایش",
+  "employees_records": "رکورد",
+
+  "employees_table_name": "نام",
+  "employees_table_id": "شناسه کارمند",
+  "employees_table_department": "دپارتمان",
+  "employees_table_company": "شرکت",
+  "employees_table_passport": "EID / شماره پاسپورت",
+  "employees_table_join": "تاریخ شروع به کار",
+  "employees_table_iban": "شماره IBAN",
+  "employees_table_status": "وضعیت",
+  "employees_table_actions": "عملیات",
+
+  "employees_no_results": "هیچ کارمندی با فیلترهای فعلی یافت نشد.",
+  "employees_no_results_pay": "هیچ رکوردی با فیلترهای فعلی یافت نشد.",
+
+  "employees_pay_employee": "کارمند",
+  "employees_pay_payment_status": "وضعیت پرداخت",
+  "employees_pay_last_active": "آخرین فعالیت",
+
+  "employees_mark_paid": "اعلام پرداخت",
+  "employees_suspend": "تعلیق",
+  "employees_delete": "حذف",
+
+  "employees_add_title": "افزودن کارمند جدید",
+  "employees_full_name": "نام کامل",
+  "employees_full_name_placeholder": "مثال: احمد خان",
+
+  "employees_emp_id": "شناسه کارمند",
+  "employees_emp_id_placeholder": "مثال: EMP-12345",
+
+  "employees_department": "دپارتمان",
+  "employees_department_placeholder": "مثال: IT",
+
+  "employees_company": "شرکت",
+  "employees_company_placeholder": "مثال: BlueWave Technologies LLC",
+
+  "employees_join_date": "تاریخ شروع به کار",
+
+  "employees_iban": "شماره IBAN",
+  "employees_iban_placeholder": "مثال: AE00 0000 0000 0000",
+
+  "employees_eid_passport": "EID / شماره پاسپورت",
+  "employees_eid_passport_placeholder": "مثال: 784-XXXX یا شماره پاسپورت",
+
+  "employees_status": "وضعیت",
+  "employees_payment_status": "وضعیت پرداخت",
+  "employees_status_active": "فعال",
+  "employees_status_inactive": "غیرفعال",
+  "employees_status_terminated": "قطع همکاری",
+
+  "employees_pay_paid": "پرداخت‌شده",
+  "employees_pay_not_paid": "پرداخت‌نشده",
+  "employees_pay_failed": "ناموفق",
+
+  "salary_title": "پرداخت حقوق",
+  "salary_subtitle": "مدیریت و پردازش پرداخت حقوق کارکنان.",
+
+  "salary_tab_details": "جزئیات پرداخت حقوق",
+  "salary_tab_send": "ارسال لیست",
+  "salary_tab_action": "اقدامات پرداخت حقوق",
+
+  "salary_table1_name": "نام",
+  "salary_table1_eid": "EID / شماره پاسپورت",
+  "salary_table1_last_payment": "آخرین پرداخت",
+  "salary_table1_salary_amount": "مبلغ حقوق (AED)",
+  "salary_table1_select": "انتخاب برای پرداخت",
+  "salary_table1_action": "عملیات",
+
+  "salary_edit_amount": "ویرایش مبلغ",
+
+  "salary_btn_go_payment": "رفتن به پرداخت",
+
+  "salary_error_select_employee": "لطفاً حداقل یک کارمند را انتخاب کنید.",
+  "salary_info_proceed_list": "در حال انتقال به لیست پرداخت...",
+
+  "salary_toast_update_success": "جزئیات حقوق با موفقیت به‌روزرسانی شد.",
+  "salary_toast_send_list_success": "لیست حقوق با موفقیت به MOHRE ارسال شد.",
+  "salary_toast_send_notification_success": "اعلان پرداخت حقوق با موفقیت ارسال شد.",
+
+  "salary_send_title": "جزئیات پرداخت حقوق شرکت",
+  "salary_send_desc": "تاریخ پرداخت را انتخاب و لیست را ایجاد کنید.",
+  "salary_send_payment_date": "تاریخ پرداخت",
+
+  "salary_send_table_name": "نام",
+  "salary_send_table_eid": "EID / شماره پاسپورت",
+  "salary_send_table_salary_amount": "مبلغ حقوق",
+  "salary_send_table_payment_date": "تاریخ پرداخت",
+
+  "salary_btn_send_list_mohre": "ارسال لیست به MOHRE",
+  "salary_send_sending": "در حال ارسال...",
+
+  "salary_action_hint": "پس از ارسال موفق لیست و دریافت ACK، این تب فعال می‌شود.",
+
+  "salary_action_export_file": "خروجی فایل حقوق",
+  "salary_action_send_bulk": "ارسال جزئیات پرداخت گروهی به MOHRE",
+  "salary_action_send_notification": "ارسال اعلان پرداخت حقوق به MOHRE",
+
+  "salary_edit_title": "ویرایش حقوق برای {{name}}",
+  "salary_edit_leaves": "مرخصی‌ها",
+  "salary_edit_days_paid": "روزهای پرداخت‌شده",
+  "salary_edit_allowance": "مزایا",
+  "salary_edit_refund": "مبلغ بازپرداخت",
+  "salary_edit_final": "مبلغ نهایی",
+
+  "salary_summary_title": "تأیید اعلان پرداخت حقوق",
+  "salary_summary_total_employees": "تعداد کارکنان:",
+  "salary_summary_total_amount": "مبلغ کل:",
+  "salary_summary_success_no": "موفق:",
+  "salary_summary_failed_no": "ناموفق:",
+  "salary_summary_success_amount": "مبلغ موفق:",
+  "salary_summary_failed_amount": "مبلغ ناموفق:",
+  "salary_summary_verify_text": "لطفاً صحت اطلاعات را تأیید کنید.",
+  "salary_summary_btn_submit": "ارسال",
+  "salary_summary_btn_sending": "در حال ارسال...",
+
+  "employees_required_fields": "لطفاً همه فیلدهای لازم را تکمیل کنید.",
+  "employees_added_success": "کارمند با موفقیت اضافه شد.",
+  "employees_removed": "کارمند حذف شد.",
+  "employees_marked_paid": "به‌عنوان پرداخت‌شده ثبت شد.",
+  "employees_suspended": "کارمند غیرفعال شد.",
+
+  "refund_title": "مدیریت بازپرداخت WPS",
+  "refund_subtitle": "ثبت و پیگیری درخواست‌های بازپرداخت مربوط به پرداخت حقوق.",
+
+  "refund_tab_request": "درخواست بازپرداخت",
+  "refund_tab_status": "وضعیت بازپرداخت",
+
+  "refund_request_title": "درخواست بازپرداخت",
+  "refund_btn_request": "ثبت درخواست بازپرداخت",
+
+  "refund_table_name": "نام",
+  "refund_table_eid": "EID / پاسپورت",
+  "refund_table_salary": "مبلغ حقوق",
+  "refund_table_payment_date": "تاریخ پرداخت",
+  "refund_table_request_date": "تاریخ درخواست بازپرداخت",
+  "refund_table_status": "وضعیت",
+  "refund_table_desc": "توضیحات",
+
+  "refund_status_title": "وضعیت بازپرداخت",
+  "refund_status_all": "همه وضعیت‌ها",
+  "refund_status_done": "موفق",
+  "refund_status_failed": "ناموفق",
+
+  "refund_search_placeholder": "جستجو بر اساس نام یا EID...",
+  "refund_filter_payment_date": "تاریخ پرداخت",
+  "refund_filters_reset": "بازنشانی فیلترها",
+
+  "refund_no_records": "هیچ رکوردی یافت نشد.",
+  "refund_showing": "نمایش",
+  "refund_of": "از",
+  "refund_records": "رکورد",
+
+  "refund_confirm_selected": "تأیید درخواست‌های انتخاب‌شده",
+  "refund_selected_desc": "کارکنان زیر در این درخواست بازپرداخت قرار می‌گیرند:",
+
+  "refund_salary": "حقوق",
+  "refund_payment_date": "تاریخ پرداخت",
+  "refund_final_amount": "مبلغ نهایی",
+
+  "refund_continue": "ادامه",
+
+  "refund_final_title": "آیا مطمئن هستید؟",
+  "refund_final_desc": "آیا می‌خواهید این درخواست بازپرداخت را ثبت کنید؟",
+
+  "refund_submitted": "درخواست بازپرداخت با موفقیت ثبت شد.",
+  "refund_yes_submit": "بله، ثبت شود",
+
+  "reports_title": "گزارش‌ها",
+  "reports_subtitle": "نمایش تاریخچه پرداخت حقوق برای هر شرکت ثبت‌شده.",
+
+  "reports_employees": "کارکنان",
+  "reports_last3months": "پرداخت حقوق (۳ ماه گذشته)",
+  "reports_total_paid": "مجموع پرداختی",
+  "reports_details": "جزئیات",
+
+  "reports_employee": "کارمند",
+  "reports_amount": "مبلغ",
+  "reports_date": "تاریخ",
+
+  "register_title": "ثبت‌نام / لغو ثبت‌نام WPS",
+  "register_tab_register": "ثبت‌نام",
+  "register_tab_deregister": "لغو ثبت‌نام",
+
+  "register_type_sponsor": "ضامن خانگی",
+  "register_type_company": "شرکت",
+
+  "register_companies_list": "فهرست شرکت‌ها",
+  "register_select_company": "انتخاب شرکت...",
+  "register_company_registered": "قبلاً ثبت‌نام شده است!",
+  "register_company_not_registered": "ثبت‌نام نشده است!",
+
+  "register_trade_license": "مجوز تجاری",
+  "register_trade_license_placeholder": "شماره مجوز تجاری را وارد کنید",
+
+  "register_license_place": "محل صدور مجوز",
+  "register_license_place_placeholder": "محل صدور مجوز را وارد کنید",
+
+  "register_info1": "اطلاعات ۱",
+  "register_info2": "اطلاعات ۲",
+  "register_info3": "اطلاعات ۳",
+
+  "register_info_placeholder": "اطلاعات را وارد کنید",
+
+  "register_bank_selection": "انتخاب بانک",
+  "register_select_bank": "انتخاب بانک...",
+
+  "register_upload_document": "بارگذاری سند",
+  "register_upload_choose": "انتخاب فایل",
+  "register_no_file": "فایلی انتخاب نشده است",
+
+  "register_submit": "ارسال",
+  "register_reset": "بازنشانی",
+
+  "register_error_type": "لطفاً ابتدا نوع ثبت‌نام را انتخاب کنید.",
+  "register_error_company": "لطفاً یک شرکت انتخاب کنید.",
+  "register_success_submitted": "فرم با موفقیت ارسال شد.",
+  "register_success_reset": "فرم با موفقیت پاک‌سازی شد.",
+
+  "deregister_title": "درخواست لغو ثبت‌نام از BSI برای WPS",
+
+  "deregister_confirm_text": "اینجانب تأیید می‌کنم که درخواست لغو ثبت‌نام از",
+  "deregister_confirm_strong": "سیستم WPS بانک BSI را ارائه کرده‌ام.",
+
+  "deregister_submit": "ارسال",
+  "deregister_error_confirm": "لطفاً قبل از ارسال، تأیید کنید.",
+  "deregister_success": "درخواست لغو ثبت‌نام با موفقیت ثبت شد.",
+  
+  "companies_activate_action": "فعال‌سازی",
+  "companies_deactivate_action": "غیرفعالسازی"
+
+}

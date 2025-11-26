@@ -341,8 +341,10 @@
 
   "deregister_submit": "إرسال الطلب",
   "deregister_error_confirm": "يرجى التأكيد قبل الإرسال.",
-  "deregister_success": "تم تقديم طلب إلغاء التسجيل بنجاح."
+  "deregister_success": "تم تقديم طلب إلغاء التسجيل بنجاح.",
 
+  "companies_activate_action": "تفعيل",
+  "companies_deactivate_action": "إلغاء التفعيل"
 
 }
 

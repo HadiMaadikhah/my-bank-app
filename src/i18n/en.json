@@ -338,7 +338,9 @@
 
   "deregister_submit": "Submit",
   "deregister_error_confirm": "Please confirm before submitting.",
-  "deregister_success": "Deregistration request submitted."
+  "deregister_success": "Deregistration request submitted.",
 
+  "companies_activate_action": "Activate",
+  "companies_deactivate_action": "Deactivate"
 
 }

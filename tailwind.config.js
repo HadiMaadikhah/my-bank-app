@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         arabic: ["IBM Plex Sans Arabic", "sans-serif"],
+        persian: ["Vazirmatn", "sans-serif"],
       },
     },
   },
