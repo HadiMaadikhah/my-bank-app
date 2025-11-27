@@ -1,24 +1,30 @@
-/* ============================
-   Persian Font (Vazirmatn)
-============================ */
+/* ==================================
+   IRANSansX (Persian Font)
+================================== */
 @font-face {
-  font-family: "Vazirmatn";
-  src: url("/src/assets/fonts/vazirmatn/Vazirmatn-Regular.woff2") format("woff2");
+  font-family: "IRANSansX";
+  src: url("/src/assets/fonts/IRANSansX/IRANSansX-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
+
 @font-face {
-  font-family: "Vazirmatn";
-  src: url("/src/assets/fonts/vazirmatn/Vazirmatn-Medium.woff2") format("woff2");
+  font-family: "IRANSansX";
+  src: url("/src/assets/fonts/IRANSansX/IRANSansX-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
+
 @font-face {
-  font-family: "Vazirmatn";
-  src: url("/src/assets/fonts/vazirmatn/Vazirmatn-Bold.woff2") format("woff2");
+  font-family: "IRANSansX";
+  src: url("/src/assets/fonts/IRANSansX/IRANSansX-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
+
 
 
 /* ===========================================
@@ -74,10 +80,11 @@
   font-family: "IBM Plex Arabic", sans-serif !important;
 }
 
-/* Persian / Farsi */
+/* Persian / Farsi — IRANSansX */
 .font-farsi {
-  font-family: "Vazirmatn", sans-serif !important;
+  font-family: "IRANSansX", sans-serif !important;
 }
+
 
 /* English (default) */
 .font-english {
@@ -106,4 +113,20 @@
 .ltr label {
   direction: ltr !important;
   text-align: left !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

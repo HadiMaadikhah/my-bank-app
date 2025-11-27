@@ -1,5 +1,5 @@
+// src/pages/Dashboard.jsx
 import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import {
@@ -8,13 +8,20 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-import { CheckCircle2, RefreshCw, Save } from "lucide-react";
+import {
+  CheckCircle2,
+  RefreshCw,
+  Save,
+  Wallet,
+  Users,
+  CreditCard,
+  TrendingUp,
+} from "lucide-react";
+
+import WpsPageLayout from "@/components/WpsPageLayout";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-
-  // RTL for Arabic + Persian
   const isRTL = i18n.language === "ar" || i18n.language === "fa";
 
   // ---------- Demo Data (Not Translated) ----------
@@ -90,10 +97,12 @@ export default function Dashboard() {
   const [selectedAccountId, setSelectedAccountId] = useState(null);
 
   const accounts = demoProfiles[activeProfile];
-  const selectedAccount = accounts.find((a) => a.id === selectedAccountId) || null;
+  const selectedAccount =
+    accounts.find((a) => a.id === selectedAccountId) || null;
 
   const totalBalance = accounts.reduce((s, a) => s + a.balance, 0);
 
+  // Chart Data
   const chartData = accounts.map((acc) => ({
     name: acc.name,
     value: parseFloat(((acc.balance / totalBalance) * 100).toFixed(1)),
@@ -106,22 +115,68 @@ export default function Dashboard() {
   const handleSaveChanges = () => toast.success(t("save_msg"));
 
   return (
-    <div className="bg-gray-50 text-gray-800 min-h-screen">
-      <main className={`p-4 md:p-8 ${isRTL ? "text-right" : "text-left"}`}>
+    <WpsPageLayout
+      title="dashboard_title"
+      subtitle="dashboard_subtitle"
+    >
+      <div className={`${isRTL ? "text-right" : "text-left"} space-y-10`}>
 
-        {/* Title */}
-        <h1 className="text-2xl font-bold text-[#2E3092] mb-6">
-          {t("dashboard_title")}
-        </h1>
+        {/* KPI Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          {[
+            {
+              icon: <Wallet size={22} />,
+              title: t("total_balance"),
+              value: `AED ${totalBalance.toLocaleString()}`,
+            },
+            {
+              icon: <Users size={22} />,
+              title: t("total_accounts"),
+              value: accounts.length,
+            },
+            {
+              icon: <CreditCard size={22} />,
+              title: t("salary_account"),
+              value: accounts.find((a) => a.salary)?.name || t("none"),
+            },
+            {
+              icon: <TrendingUp size={22} />,
+              title: t("avg_balance"),
+              value: `AED ${
+                accounts.length > 0
+                  ? (totalBalance / accounts.length).toFixed(0)
+                  : 0
+              }`,
+            },
+          ].map((card, idx) => (
+            <div
+              key={idx}
+              className="bg-white/80 backdrop-blur-xl border border-[#d9dcff] rounded-2xl p-5 shadow-lg flex items-center gap-4"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[#2E3092]/10 flex items-center justify-center text-[#2E3092]">
+                {card.icon}
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">{card.title}</p>
+                <p className="text-lg font-semibold text-[#1c1f4a]">
+                  {card.value}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Donut Chart */}
-        <section className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-8">
+        <div className="bg-white/80 backdrop-blur-xl border border-[#d9dcff] shadow-lg rounded-2xl p-6">
           <h2 className="text-lg font-semibold text-[#2E3092] mb-4">
             {t("balance_distribution")}
           </h2>
 
-          <div className={`flex flex-col md:flex-row items-center justify-between gap-6 ${isRTL ? "flex-row-reverse" : ""}`}>
-
+          <div
+            className={`flex flex-col md:flex-row items-center justify-between gap-6 ${
+              isRTL ? "flex-row-reverse" : ""
+            }`}
+          >
             {/* Chart */}
             <div className="w-full md:w-1/2 h-64">
               <ResponsiveContainer>
@@ -148,7 +203,9 @@ export default function Dashboard() {
               {chartData.map((entry, i) => (
                 <div
                   key={i}
-                  className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}
+                  className={`flex items-center gap-3 ${
+                    isRTL ? "flex-row-reverse" : ""
+                  }`}
                 >
                   <span
                     className="w-4 h-4 rounded-full block"
@@ -160,38 +217,42 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-
           </div>
-        </section>
+        </div>
 
-        {/* Profiles */}
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold text-[#2E3092] mb-2">
-            {t("profiles")}
-          </h2>
+        {/* Profiles Tabs */}
+        <section className="space-y-6">
+          <div>
+            <h2 className="text-lg font-semibold text-[#2E3092] mb-2">
+              {t("profiles")}
+            </h2>
 
-          <div className={`flex flex-wrap gap-2 ${isRTL ? "justify-end" : ""}`}>
-            {Object.keys(demoProfiles).map((p) => (
-              <button
-                key={p}
-                onClick={() => {
-                  setActiveProfile(p);
-                  setSelectedAccountId(null);
-                }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                  activeProfile === p
-                    ? "bg-[#2E3092] text-white"
-                    : "bg-white border border-[#2E3092]/35 text-[#2E3092] hover:bg-[#2E3092]/10"
-                }`}
-              >
-                {t(`profile_${p.toLowerCase()}`)}
-              </button>
-            ))}
+            <div
+              className={`flex flex-wrap gap-2 ${
+                isRTL ? "justify-end" : "justify-start"
+              }`}
+            >
+              {Object.keys(demoProfiles).map((p) => (
+                <button
+                  key={p}
+                  onClick={() => {
+                    setActiveProfile(p);
+                    setSelectedAccountId(null);
+                  }}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition 
+                    ${
+                      activeProfile === p
+                        ? "bg-[#2E3092] text-white shadow-md"
+                        : "bg-white/80 border border-[#2E3092]/30 text-[#2E3092] hover:bg-[#2E3092]/10"
+                    }`}
+                >
+                  {t(`profile_${p.toLowerCase()}`)}
+                </button>
+              ))}
+            </div>
           </div>
-        </section>
 
-        {/* Accounts */}
-        <section className="space-y-8">
+          {/* Accounts */}
           <div>
             <h2 className="text-lg font-semibold text-[#2E3092] mb-3">
               {t("accounts")}
@@ -202,19 +263,16 @@ export default function Dashboard() {
                 <div
                   key={acc.id}
                   onClick={() => setSelectedAccountId(acc.id)}
-                  className={`border rounded-xl p-4 bg-white shadow-sm
-                    transition cursor-pointer hover:shadow-md
+                  className={`border rounded-xl p-4 bg-white/80 backdrop-blur-xl shadow-md cursor-pointer transition
                     ${
                       selectedAccountId === acc.id
                         ? "border-[#2E3092] ring-2 ring-[#2E3092]/20"
-                        : "border-gray-200"
+                        : "border-[#d9dcff]"
                     }`}
                 >
                   <div className="flex items-center justify-between">
                     <h3 className="text-[#2E3092] font-semibold">{acc.name}</h3>
-                    {acc.salary && (
-                      <CheckCircle2 className="text-green-500" />
-                    )}
+                    {acc.salary && <CheckCircle2 className="text-green-500" />}
                   </div>
 
                   <p className="text-sm text-gray-600 mt-1">{acc.number}</p>
@@ -232,9 +290,8 @@ export default function Dashboard() {
 
           {/* Transactions */}
           {selectedAccount && (
-            <div>
-
-              <div className={`flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-3`}>
+            <div className="space-y-3">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                 <h2 className="text-xl font-semibold text-[#2E3092]">
                   {t("last_transactions")} — {selectedAccount.name}
                 </h2>
@@ -242,7 +299,7 @@ export default function Dashboard() {
                 <div className="flex flex-wrap gap-2">
                   <button
                     onClick={handleSetAsSalary}
-                    className="inline-flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-3 py-2 rounded-md text-sm transition"
+                    className="inline-flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-3 py-2 rounded-md text-sm"
                   >
                     <CheckCircle2 size={16} />
                     {t("set_salary")}
@@ -250,7 +307,7 @@ export default function Dashboard() {
 
                   <button
                     onClick={handleRefreshTx}
-                    className="inline-flex items-center gap-2 bg-white border border-[#2E3092]/40 text-[#2E3092] hover:bg-[#2E3092]/5 px-3 py-2 rounded-md text-sm transition"
+                    className="inline-flex items-center gap-2 bg-white border border-[#2E3092]/40 text-[#2E3092] hover:bg-[#2E3092]/5 px-3 py-2 rounded-md text-sm"
                   >
                     <RefreshCw size={16} />
                     {t("refresh")}
@@ -258,7 +315,7 @@ export default function Dashboard() {
 
                   <button
                     onClick={handleSaveChanges}
-                    className="inline-flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-3 py-2 rounded-md text-sm transition"
+                    className="inline-flex items-center gap-2 bg-[#2E3092] hover:bg-[#23246e] text-white px-3 py-2 rounded-md text-sm"
                   >
                     <Save size={16} />
                     {t("save")}
@@ -266,9 +323,12 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Table */}
-              <div className="bg-white rounded-xl shadow border border-gray-200 overflow-x-auto">
-                <table className={`w-full text-sm min-w-[500px] ${isRTL ? "text-right" : "text-left"}`}>
+              <div className="bg-white/80 backdrop-blur-xl rounded-xl shadow border border-[#d9dcff] overflow-x-auto">
+                <table
+                  className={`w-full text-sm min-w-[500px] ${
+                    isRTL ? "text-right" : "text-left"
+                  }`}
+                >
                   <thead className="bg-[#2E3092] text-white">
                     <tr>
                       <th className="py-3 px-4">{t("date")}</th>
@@ -299,13 +359,10 @@ export default function Dashboard() {
                   </tbody>
                 </table>
               </div>
-
             </div>
           )}
-
         </section>
-
-      </main>
-    </div>
+      </div>
+    </WpsPageLayout>
   );
 }

@@ -335,6 +335,103 @@
   "deregister_success": "درخواست لغو ثبت‌نام با موفقیت ثبت شد.",
   
   "companies_activate_action": "فعال‌سازی",
-  "companies_deactivate_action": "غیرفعالسازی"
+  "companies_deactivate_action": "غیرفعالسازی",
+  "dashboard_subtitle": "نمای کلی حساب‌ها و وضعیت مالی",
+
+  "total_balance": "موجودی کل",
+  "total_accounts": "تعداد حساب‌ها",
+  "salary_account": "حساب حقوق",
+  "avg_balance": "میانگین موجودی",
+  "balance": "موجودی",
+  "none": "وجود ندارد",
+
+  "wps_overview_title": "نمای کلی WPS",
+  "wps_overview_subtitle": "خلاصه شرکت‌ها، کارمندان و پرداخت‌های حقوق",
+
+  "wps_total_companies": "تعداد شرکت‌های ثبت‌شده",
+  "wps_total_employees": "تعداد کارکنان",
+  "wps_total_payments": "پرداخت‌های این ماه",
+  "wps_last_payment": "آخرین پرداخت حقوق",
+
+  "wps_salary_distribution": "توزیع حقوق",
+  "wps_recent_activity": "آخرین فعالیت WPS",
+  "wps_pending_salaries": "حقوق‌های در انتظار",
+  "wps_salary_flow": "نمودار جریان پرداخت",
+  "menu_wps_dashboard": "داشبورد WPS",
+
+  "profile_title": "پروفایل من",
+  "profile_email": "ایمیل",
+  "profile_phone": "شماره تماس",
+  "profile_joined": "تاریخ عضویت",
+  "profile_edit": "ویرایش پروفایل",
+  "profile_fullname": "نام کامل",
+  "profile_change_picture": "تغییر تصویر پروفایل",
+  "choose_image": "انتخاب تصویر",
+  "save_picture": "ذخیره تصویر",
+
+  "profile_updated": "پروفایل با موفقیت به‌روزرسانی شد!",
+  "profile_picture_updated": "تصویر پروفایل با موفقیت ذخیره شد!",
+
+  "confirm_title": "آیا مطمئن هستید؟",
+  "confirm_text": "آیا می‌خواهید تغییرات ذخیره شوند؟",
+  "yes_save": "بله، ذخیره شود",
+
+  "settings_title": "تنظیمات",
+  "settings_profile": "اطلاعات پروفایل",
+  "settings_name": "نام کامل",
+  "settings_email": "ایمیل",
+  "settings_phone": "شماره تماس",
+  "settings_save": "ثبت تغییرات",
+  "settings_profile_updated": "پروفایل با موفقیت به‌روزرسانی شد!",
+
+  "settings_address": "اطلاعات آدرس",
+  "settings_country": "کشور",
+  "settings_city": "شهر",
+  "settings_addressline": "آدرس کامل",
+  "settings_address_updated": "آدرس با موفقیت ذخیره شد!",
+
+  "settings_documents": "مدارک و احراز هویت",
+  "settings_emirates_id": "کارت هویت امارات",
+  "settings_passport": "پاسپورت",
+  "settings_license": "لایسنس شرکت",
+  "settings_upload": "آپلود فایل",
+  "settings_no_file": "هیچ فایلی آپلود نشده",
+  "settings_doc_uploaded": "مدرک با موفقیت آپلود شد!",
+
+  "settings_password": "تغییر رمز عبور",
+  "settings_oldpass": "رمز قدیمی",
+  "settings_newpass": "رمز جدید",
+  "settings_confirmpass": "تکرار رمز جدید",
+  "settings_password_change": "به‌روزرسانی رمز",
+  "settings_password_success": "رمز عبور با موفقیت تغییر کرد!",
+  "settings_password_nomatch": "رمزهای جدید یکسان نیستند!",
+
+  "settings_tab_profile": "پروفایل",
+  "settings_tab_address": "آدرس",
+  "settings_tab_documents": "مدارک",
+  "settings_tab_password": "تغییر رمز عبور",
+  "settings_tab_preferences": "تنظیمات کاربری",
+  "settings_tab_notifications": "اعلان‌ها",
+
+  "settings_tab_personal": "اطلاعات شخصی",
+  "settings_tab_security": "امنیت حساب",
+  "settings_tab_alerts": "اعلان‌ها و هشدارها",
+
+  "settings_pobox": "صندوق پستی (P.O. Box)",
+  "settings_emiratesId": "کارت امارات (Emirates ID)",
+
+  "settings_alerts": "تنظیمات اعلان‌ها",
+  "settings_alert_email_salary": "اعلان ایمیلی واریز حقوق",
+  "settings_alert_sms_salary": "اعلان پیامکی واریز حقوق",
+  "settings_alert_login": "هشدار ورود به حساب",
+  "settings_alert_devices": "هشدار دستگاه‌های ناشناس",
+
+  "settings_language": "زبان",
+  "settings_dateformat": "فرمت تاریخ",
+  "settings_preferences": "تنظیمات کاربری",
+
+  "register_choose_type": "نوع ثبت‌نام را انتخاب کنید"
+
+
 
 }

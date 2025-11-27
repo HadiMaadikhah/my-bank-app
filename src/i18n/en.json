@@ -341,6 +341,101 @@
   "deregister_success": "Deregistration request submitted.",
 
   "companies_activate_action": "Activate",
-  "companies_deactivate_action": "Deactivate"
+  "companies_deactivate_action": "Deactivate",
+
+  "dashboard_subtitle": "Your accounts and financial overview",
+  "total_balance": "Total Balance",
+  "total_accounts": "Total Accounts",
+  "salary_account": "Salary Account",
+  "avg_balance": "Average Balance",
+  "balance": "Balance",
+  "none": "None",
+
+  "wps_overview_title": "WPS Overview",
+  "wps_overview_subtitle": "Salary, companies and employees summary",
+
+  "wps_total_companies": "Total Registered Companies",
+  "wps_total_employees": "Total Employees",
+  "wps_total_payments": "Payments This Month",
+  "wps_last_payment": "Last Salary Payment",
+
+  "wps_salary_distribution": "Salary Distribution",
+  "wps_recent_activity": "Recent WPS Activity",
+  "wps_salary_flow": "Salary Flow",
+  "menu_wps_dashboard": "WPS Dashboard",
+
+  "profile_title": "My Profile",
+  "profile_email": "Email",
+  "profile_phone": "Phone",
+  "profile_joined": "Joined",
+  "profile_edit": "Edit Profile",
+  "profile_fullname": "Full Name",
+  "profile_change_picture": "Change Profile Picture",
+  "choose_image": "Choose Image",
+  "save_picture": "Save Picture",
+
+  "profile_updated": "Profile updated successfully!",
+  "profile_picture_updated": "Profile picture updated!",
+
+  "confirm_title": "Are you sure?",
+  "confirm_text": "Do you want to save these changes?",
+  "yes_save": "Yes, Save",
+
+  "settings_title": "Settings",
+  "settings_profile": "Profile Details",
+  "settings_name": "Full Name",
+  "settings_email": "Email",
+  "settings_phone": "Phone",
+  "settings_save": "Save Changes",
+  "settings_profile_updated": "Profile updated successfully!",
+
+  "settings_address": "Address Information",
+  "settings_country": "Country",
+  "settings_city": "City",
+  "settings_addressline": "Address Line",
+  "settings_address_updated": "Address updated successfully!",
+
+  "settings_documents": "KYC & Documents",
+  "settings_emirates_id": "Emirates ID",
+  "settings_passport": "Passport",
+  "settings_license": "Trade License",
+  "settings_upload": "Upload",
+  "settings_no_file": "No file uploaded",
+  "settings_doc_uploaded": "Document uploaded successfully!",
+
+  "settings_password": "Change Password",
+  "settings_oldpass": "Old Password",
+  "settings_newpass": "New Password",
+  "settings_confirmpass": "Confirm Password",
+  "settings_password_change": "Update Password",
+  "settings_password_success": "Password updated successfully!",
+  "settings_password_nomatch": "New passwords do not match!",
+
+  "settings_tab_profile": "Profile",
+  "settings_tab_address": "Address",
+  "settings_tab_documents": "Documents",
+  "settings_tab_password": "Password",
+  "settings_tab_preferences": "Preferences",
+  "settings_tab_notifications": "Notifications",
+
+  "settings_tab_personal": "Personal Information",
+  "settings_tab_security": "Security",
+  "settings_tab_alerts": "Alerts & Notifications",
+  
+  "settings_pobox": "P.O. Box",
+  "settings_emiratesId": "Emirates ID",
+  
+  "settings_alerts": "Notification Settings",
+  "settings_alert_email_salary": "Email notification for salary payments",
+  "settings_alert_sms_salary": "SMS notification for salary payments",
+  "settings_alert_login": "Login alerts",
+  "settings_alert_devices": "Unknown device alerts",
+
+  "settings_language": "Language",
+  "settings_dateformat": "Date Format",
+  "settings_preferences": "User Preferences",
+
+  "register_choose_type": "Choose registration type"
+
 
 }

@@ -344,7 +344,105 @@
   "deregister_success": "تم تقديم طلب إلغاء التسجيل بنجاح.",
 
   "companies_activate_action": "تفعيل",
-  "companies_deactivate_action": "إلغاء التفعيل"
+  "companies_deactivate_action": "إلغاء التفعيل",
+
+  "dashboard_subtitle": "نظرة عامة على حساباتك ووضعك المالي",
+
+  "total_balance": "إجمالي الرصيد",
+  "total_accounts": "عدد الحسابات",
+  "salary_account": "حساب الراتب",
+  "avg_balance": "متوسط الرصيد",
+  "balance": "الرصيد",
+  "none": "لا يوجد",
+
+  "wps_overview_title": "نظرة عامة على نظام حماية الأجور",
+  "wps_overview_subtitle": "ملخص الشركات والموظفين ومدفوعات الرواتب",
+
+  "wps_total_companies": "إجمالي الشركات المسجلة",
+  "wps_total_employees": "إجمالي الموظفين",
+  "wps_total_payments": "مدفوعات هذا الشهر",
+  "wps_last_payment": "آخر دفع للرواتب",
+
+  "wps_salary_distribution": "توزيع الرواتب",
+  "wps_recent_activity": "آخر نشاط لنظام حماية الأجور",
+  "wps_pending_salaries": "الرواتب المعلقة",
+  "wps_salary_flow": "مخطط تدفق الرواتب",
+  "menu_wps_dashboard": "لوحة التحكم WPS",
+
+  "profile_title": "ملفي الشخصي",
+  "profile_email": "البريد الإلكتروني",
+  "profile_phone": "رقم الهاتف",
+  "profile_joined": "تاريخ الانضمام",
+  "profile_edit": "تعديل الملف الشخصي",
+  "profile_fullname": "الاسم الكامل",
+  "profile_change_picture": "تغيير صورة الملف الشخصي",
+  "choose_image": "اختر صورة",
+  "save_picture": "حفظ الصورة",
+
+  "profile_updated": "تم تحديث الملف الشخصي بنجاح!",
+  "profile_picture_updated": "تم حفظ صورة الملف الشخصي!",
+
+  "confirm_title": "هل أنت متأكد؟",
+  "confirm_text": "هل تريد حفظ التغييرات؟",
+  "yes_save": "نعم، احفظ",
+
+  "settings_title": "الإعدادات",
+  "settings_profile": "معلومات الملف الشخصي",
+  "settings_name": "الاسم الكامل",
+  "settings_email": "البريد الإلكتروني",
+  "settings_phone": "رقم الهاتف",
+  "settings_save": "حفظ التعديلات",
+  "settings_profile_updated": "تم تحديث الملف الشخصي بنجاح!",
+
+  "settings_address": "معلومات العنوان",
+  "settings_country": "الدولة",
+  "settings_city": "المدينة",
+  "settings_addressline": "العنوان الكامل",
+  "settings_address_updated": "تم حفظ العنوان بنجاح!",
+
+  "settings_documents": "المستندات والتحقق",
+  "settings_emirates_id": "بطاقة الهوية الإماراتية",
+  "settings_passport": "جواز السفر",
+  "settings_license": "الرخصة التجارية",
+  "settings_upload": "رفع ملف",
+  "settings_no_file": "لم يتم رفع أي ملف",
+  "settings_doc_uploaded": "تم رفع المستند بنجاح!",
+
+  "settings_password": "تغيير كلمة المرور",
+  "settings_oldpass": "كلمة المرور القديمة",
+  "settings_newpass": "كلمة المرور الجديدة",
+  "settings_confirmpass": "تأكيد كلمة المرور",
+  "settings_password_change": "تحديث كلمة المرور",
+  "settings_password_success": "تم تغيير كلمة المرور بنجاح!",
+  "settings_password_nomatch": "كلمتا المرور غير متطابقتين!",
+
+  "settings_tab_profile": "الملف الشخصي",
+  "settings_tab_address": "العنوان",
+  "settings_tab_documents": "الوثائق",
+  "settings_tab_password": "تغيير كلمة المرور",
+  "settings_tab_preferences": "تفضیلات المستخدم",
+  "settings_tab_notifications": "الإشعارات",
+
+  "settings_tab_personal": "المعلومات الشخصية",
+  "settings_tab_security": "أمان الحساب",
+  "settings_tab_alerts": "التنبیهات والإشعارات",
+
+  "settings_pobox": "صندوق البريد (P.O. Box)",
+  "settings_emiratesId": "بطاقة الهوية الإماراتية",
+
+  "settings_alerts": "إعدادات الإشعارات",
+  "settings_alert_email_salary": "تنبيه بالبريد الإلكتروني لرواتب الموظفين",
+  "settings_alert_sms_salary": "تنبيه عبر الرسائل القصيرة لرواتب الموظفين",
+  "settings_alert_login": "تنبیهات تسجيل الدخول",
+  "settings_alert_devices": "تنبیهات الأجهزة غیر المعروفة",
+
+  "settings_language": "اللغة",
+  "settings_dateformat": "تنسيق التاريخ",
+  "settings_preferences": "تفضیلات المستخدم",
+
+  "register_choose_type": "اختر نوع التسجيل"
+
+
 
 }
 
