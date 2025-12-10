@@ -1,7 +1,7 @@
 // src/components/Sidebar.jsx
 
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   Building2,
@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 export default function Sidebar({ onNavigate }) {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar" || i18n.language === "fa";
 
@@ -83,9 +84,9 @@ export default function Sidebar({ onNavigate }) {
         {/* FACILITIES ------------------------------------------------ */}
         <div className="space-y-1">
 
-          {/* FACILITIES BUTTON — FIXED WITH direction */}
+          {/* FACILITIES BUTTON */}
           <button
-            onClick={() => setFacOpen(!facOpen)}
+            onClick={() => setFacOpen(prev => !prev)}
             className={`
               w-full flex items-center px-4 py-2.5 
               rounded-lg font-semibold text-[#2E3092] hover:bg-white/80 transition-all text-sm
@@ -116,14 +117,17 @@ export default function Sidebar({ onNavigate }) {
 
               {/* WPS MODULE ------------------------------------------------ */}
               <button
-                onClick={() => setWpsOpen(!wpsOpen)}
+                onClick={() => {
+                  setWpsOpen(prev => !prev);
+                  navigate("/wps/dashboard");
+                  onNavigate && onNavigate();
+                }}
                 className={`
                   w-full flex items-center py-2 px-3 rounded-md text-sm 
                   text-[#1c1f4a]/80 hover:bg-white/60 hover:text-[#2E3092] transition-all
                   ${isRTL ? "flex-row-reverse justify-between" : "flex-row justify-between"}
                 `}
-                style={{ direction:  "ltr" }}
-
+                style={{ direction: "ltr" }}
               >
                 <span className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
                   <FolderKanban size={15} className="text-[#2E3092]" />
@@ -140,10 +144,6 @@ export default function Sidebar({ onNavigate }) {
               {/* WPS INNER MENU */}
               {wpsOpen && (
                 <div className={`mt-1 space-y-1 text-sm ${isRTL ? "pr-4" : "pl-4"}`}>
-
-                  <NavLink to="/wps/dashboard" className={submenuClass} onClick={onNavigate}>
-                    {t("menu_wps_dashboard")}
-                  </NavLink>
 
                   <NavLink to="/wps/register" className={submenuClass} onClick={onNavigate}>
                     {t("menu_register")}
